@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/hours-design-system-a6c7f78c-f8d3-4aba-92a6-47ac35215e3e/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/hours-design-system-a6c7f78c-f8d3-4aba-92a6-47ac35215e3e/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/hours-design-system-a6c7f78c-f8d3-4aba-92a6-47ac35215e3e/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/hours-design-system-a6c7f78c-f8d3-4aba-92a6-47ac35215e3e/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/hours-design-system-a6c7f78c-f8d3-4aba-92a6-47ac35215e3e/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/hours-design-system-a6c7f78c-f8d3-4aba-92a6-47ac35215e3e/styles.css">
+  <script src="_ds/hours-design-system-a6c7f78c-f8d3-4aba-92a6-47ac35215e3e/_ds_bundle.js"></script>
+  <script src="image-slot.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #F5F3F0; font-family: 'Figtree', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #D95A3F; text-decoration-color: rgba(242,112,89,0.4); text-underline-offset: 3px; }
+    a:hover { color: #F27059; }
+    ::selection { background: #FFDCC8; color: #1E2A3A; }
+    summary { list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    details[open] > summary span[data-plus] { transform: rotate(45deg); }
+    @keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+    [data-reveal] { animation: rise 0.9s cubic-bezier(0.22,0.61,0.36,1) both; animation-timeline: view(); animation-range: entry 0% entry 30%; }
+    @supports not (animation-timeline: view()) { [data-reveal] { animation: none; } }
+    @keyframes heroIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    @keyframes drift { 0%, 100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(14px,-10px,0); } }
+    @keyframes hint { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+  </style>
+</helmet>
+
+<div style="min-height:100vh;color:rgba(30,42,58,0.72);">
+
+  <!-- ———— sticky header: mark, chapter nav, sun progress ———— -->
+  <header style="position:sticky;top:0;z-index:60;background:rgba(245,243,240,0.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(30,42,58,0.07);">
+    <div style="max-width:1120px;margin:0 auto;padding:13px 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+      <a href="#top" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#1E2A3A;">
+        <span style="width:22px;height:11px;border-radius:22px 22px 0 0;background:var(--gradient-mark);display:inline-block;"></span>
+        <span style="font-size:14px;font-weight:600;letter-spacing:0.02em;color:#1E2A3A;">Product Course</span>
+      </a>
+      <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
+        <nav style="display:flex;align-items:center;gap:2px;flex-wrap:wrap;margin-left:auto;">
+          <sc-for list="{{ nav }}" as="n" hint-placeholder-count="7">
+            <a href="{{ n.href }}" style="{{ n.style }}">{{ n.label }}</a>
+          </sc-for>
+        </nav>
+      </sc-if>
+    </div>
+    <sc-if value="{{ showSun }}" hint-placeholder-val="{{ true }}">
+      <div style="position:relative;height:3px;background:rgba(30,42,58,0.06);">
+        <div style="position:absolute;left:0;top:0;bottom:0;background:var(--gradient-strip);border-radius:0 3px 3px 0;width: {{ fillWidth }};"></div>
+        <div style="position:absolute;top:-6px;width:14px;height:14px;border-radius:50%;background:#F27059;box-shadow:0 0 0 3px rgba(242,112,89,0.18), 0 2px 10px rgba(242,112,89,0.5);left: {{ sunLeft }};"></div>
+      </div>
+    </sc-if>
+  </header>
+
+  <!-- ———— hero: dawn ———— -->
+  <section id="top" data-screen-label="Hero" style="padding:18px 18px 0;">
+    <div style="position:relative;overflow:hidden;border-radius:28px;background:var(--gradient-dawn);min-height:78vh;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(40px, 7vw, 88px);">
+      <div style="position:absolute;inset:0;pointer-events:none;background-image:var(--grain);background-size:128px;"></div>
+      <div style="position:absolute;top:-80px;right:-60px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle, rgba(242,112,89,0.35) 0%, rgba(242,112,89,0) 68%);filter:blur(10px);animation:drift 14s ease-in-out infinite;pointer-events:none;"></div>
+      <svg viewBox="0 0 230 120" width="210" style="position:absolute;top:54px;right:56px;opacity:0.9;" aria-hidden="true">
+        <circle cx="115" cy="112" r="52" fill="rgba(255,255,255,0.12)"></circle>
+        <path d="M 25 112 A 90 90 0 0 1 205 112" stroke="rgba(255,255,255,0.35)" fill="none" stroke-width="1.5" stroke-dasharray="2 7"></path>
+        <line x1="0" y1="112" x2="230" y2="112" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"></line>
+      </svg>
+      <div style="position:relative;max-width:720px;">
+        <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,0.5);animation:heroIn 0.8s cubic-bezier(0.22,0.61,0.36,1) 0.05s both;">Product course · chapters 01 — 07</div>
+        <h1 style="margin:18px 0 0;font-size:clamp(40px, 6vw, 64px);line-height:1.05;letter-spacing:-0.02em;font-weight:300;color:#fff;animation:heroIn 0.8s cubic-bezier(0.22,0.61,0.36,1) 0.15s both;">Build solutions<br>people love.</h1>
+        <p style="margin:26px 0 0;font-size:17px;line-height:1.7;color:rgba(255,255,255,0.72);max-width:560px;animation:heroIn 0.8s cubic-bezier(0.22,0.61,0.36,1) 0.28s both;">In times of AI, the role of the Product manager remains the same: build solutions which people love, which seamlessly fit into their lives and help solve their business problems.</p>
+        <p style="margin:14px 0 0;font-size:15px;line-height:1.7;color:rgba(255,255,255,0.5);max-width:560px;animation:heroIn 0.8s cubic-bezier(0.22,0.61,0.36,1) 0.36s both;">We will talk about what's actually different now: the products, how they behave, the work you hand over to AI, and how you choose, launch and measure what you build.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:34px;animation:heroIn 0.8s cubic-bezier(0.22,0.61,0.36,1) 0.45s both;">
+          <span style="font-size:12px;font-weight:500;color:rgba(255,255,255,0.85);padding:8px 16px;border-radius:999px;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.28);backdrop-filter:blur(8px);">one single scroll</span>
+          <span style="font-size:12px;font-weight:500;color:rgba(255,255,255,0.85);padding:8px 16px;border-radius:999px;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.28);backdrop-filter:blur(8px);">seven chapters</span>
+          <span style="font-size:12px;font-weight:500;color:rgba(255,255,255,0.85);padding:8px 16px;border-radius:999px;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.28);backdrop-filter:blur(8px);">read at your own pace</span>
+        </div>
+      </div>
+      <div style="position:absolute;bottom:26px;right:40px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);animation:hint 3.5s ease-in-out infinite;">scroll ↓</div>
+    </div>
+  </section>
+
+  <!-- ════════════ 01 · WELCOME ════════════ -->
+  <section id="ch-1" data-chapter="ch-1" data-screen-label="01 Welcome" style="max-width:1120px;margin:0 auto;padding:120px 28px 0;scroll-margin-top:90px;">
+    <div data-reveal style="display:flex;align-items:baseline;gap:22px;">
+      <span style="font-size:110px;font-weight:300;line-height:0.8;color:rgba(30,42,58,0.08);letter-spacing:-0.03em;" aria-hidden="true">01</span>
+      <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.5);">Welcome</span>
+    </div>
+    <h2 data-reveal style="margin:30px 0 0;font-size:clamp(30px, 4vw, 42px);line-height:1.12;letter-spacing:-0.02em;font-weight:300;color:#1E2A3A;max-width:640px;text-wrap:pretty;">Product Management is a wonderful job — and predominantly a <em style="font-style:normal;color:#D95A42;">people business</em>.</h2>
+    <div data-reveal style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:26px;">
+      <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);flex:1 1 420px;max-width:600px;">It carries your personality with everything you do. The four most important skills of a Product Manager:</p>
+      <aside style="flex:1 1 210px;max-width:250px;background:#FFF5EB;border-radius:16px;padding:16px 18px;transform:rotate(-0.6deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="width:14px;height:7px;border-radius:14px 14px 0 0;background:var(--gradient-mark);"></span>
+          <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">Side note</span>
+        </div>
+        <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">At any point during your Product work, feel free to reach out — <a href="{{ mailto }}">{{ email }}</a>.</p>
+      </aside>
+    </div>
+
+    <!-- four skills -->
+    <div style="display:flex;flex-direction:column;gap:22px;margin-top:48px;">
+      <div data-reveal style="background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:30px 34px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;">
+          <span style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#F7F5F1;box-shadow:inset 2px 2px 6px rgba(30,42,58,0.10), inset -2px -2px 6px rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#D95A3F;">1</span>
+          <div style="flex:1 1 320px;min-width:min(100%, 320px);">
+            <h3 style="margin:4px 0 0;font-size:22px;font-weight:500;letter-spacing:-0.01em;color:#1E2A3A;">Curiosity</h3>
+            <p style="margin:10px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">You act as air cover for people around you, connecting them and initiatives to build <strong style="font-weight:600;color:#1E2A3A;">cumulative product value</strong>. Asking good questions is your best move.</p>
+            <p style="margin:12px 0 0;font-size:13px;line-height:1.65;font-style:italic;color:rgba(30,42,58,0.5);">The true state of your product doesn't live in any single document. The best source of truth is an internal feeling you build over time by triangulating Jira reports, watercooler conversations, macro trends and board discussions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal style="background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:30px 34px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;">
+          <span style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#F7F5F1;box-shadow:inset 2px 2px 6px rgba(30,42,58,0.10), inset -2px -2px 6px rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#D95A3F;">2</span>
+          <div style="flex:1 1 320px;min-width:min(100%, 320px);">
+            <h3 style="margin:4px 0 0;font-size:22px;font-weight:500;letter-spacing:-0.01em;color:#1E2A3A;">Communication</h3>
+            <p style="margin:10px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">People are coming to you with ideas. It is your job to make sure <strong style="font-weight:600;color:#1E2A3A;">only the right ones deserve their spot on production</strong>. You are the ultimate leader without formal authority.</p>
+            <details style="margin-top:16px;">
+              <summary style="display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);box-shadow:-4px -4px 10px rgba(255,255,255,0.9), 5px 5px 14px rgba(30,42,58,0.10);cursor:pointer;font-size:13px;font-weight:600;color:#D95A3F;user-select:none;" style-hover="box-shadow:-4px -4px 10px rgba(255,255,255,0.9), 5px 5px 14px rgba(30,42,58,0.10), 0 8px 30px rgba(242,112,89,0.18);" style-active="transform:scale(0.97);">
+                <span data-plus style="display:inline-block;transition:transform 240ms cubic-bezier(0.22,0.61,0.36,1);font-weight:400;font-size:16px;line-height:1;">+</span> learn more
+              </summary>
+              <div style="margin-top:18px;background:#EFECE7;border-radius:18px;box-shadow:inset 3px 3px 8px rgba(30,42,58,0.07), inset -3px -3px 8px rgba(255,255,255,0.9);padding:28px 30px;">
+                <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">Product is a connective function, so communication is most of your job. Without formal authority, your influence runs on trust — so build the right relationships while everything is going great.</p>
+                <div style="margin-top:26px;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#D95A3F;">One idea, many languages</div>
+                <div style="margin:10px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">Did you know you are multilingual? You speak business value, technical feasibility, sales opportunity and marketing approach as you navigate different stakeholders and use their language.
+                  <details style="display:inline-block;position:relative;vertical-align:-3px;margin-left:4px;">
+                    <summary style="width:20px;height:20px;border-radius:50%;background:#F7F5F1;box-shadow:-2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(30,42,58,0.14);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;font-style:italic;color:#D95A3F;cursor:pointer;user-select:none;" style-hover="transform:scale(1.1);">i</summary>
+                    <div style="position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 10px);width:250px;background:#fff;border-radius:14px;box-shadow:0 4px 40px rgba(30,42,58,0.16), 0 1px 4px rgba(30,42,58,0.08);padding:14px 16px;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.72);z-index:40;">People react to how you present something, not only to whether the idea is good.</div>
+                  </details>
+                </div>
+                <div style="margin-top:22px;position:relative;overflow:hidden;background:var(--gradient-warm);border-radius:18px;padding:22px 26px;">
+                  <div style="position:absolute;inset:0;pointer-events:none;background-image:var(--grain);background-size:128px;"></div>
+                  <div style="position:relative;">
+                    <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,0.55);">Try this</div>
+                    <p style="margin:8px 0 0;font-size:14px;line-height:1.65;color:#fff;">Pick one initiative you're working on and write four short pitches for it: Strategy, Sales, Marketing and Dev. The one that was hardest to write is the conversation to prepare for first.</p>
+                    <a href="{{ mailto }}" style="display:inline-block;margin-top:14px;font-size:12px;font-weight:600;color:#fff;text-decoration:none;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.35);backdrop-filter:blur(8px);">Let me know how it went →</a>
+                  </div>
+                </div>
+                <div style="margin-top:26px;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#D95A3F;">To every conversation</div>
+                <p style="margin:10px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">Bring choices, never ultimatums. Provide options and modularity, and present clear trade-offs ("If we move this up, what do we push out?"). Where a stakeholder feels like they are losing something, the least you can do is give them optionality and a sense of control.</p>
+                <p style="margin:12px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">Share bad news early, with options: what could happen, how likely, how far it reaches, who owns it and what you propose. Avoid watermelon reports — all green outside, red inside.</p>
+                <p style="margin:12px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">When something breaks, start curious: "Glad we found this now rather than later. Tell me more." Then check what it affects downstream: scope, deadline, budget, quality.</p>
+                <div style="margin-top:26px;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#D95A3F;">Managing up</div>
+                <p style="margin:10px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">Leadership cares about revenue, growth and predictable results. Instead of a list of features, build a narrative around numbers and a forecast; speed, quality, cost. The more senior the room, the fewer details outside of this are needed.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal style="display:flex;gap:22px;flex-wrap:wrap;">
+        <div style="flex:1 1 300px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:30px 34px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+          <div style="display:flex;gap:18px;align-items:flex-start;">
+            <span style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#F7F5F1;box-shadow:inset 2px 2px 6px rgba(30,42,58,0.10), inset -2px -2px 6px rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#D95A3F;">3</span>
+            <div>
+              <h3 style="margin:4px 0 0;font-size:22px;font-weight:500;letter-spacing:-0.01em;color:#1E2A3A;">Authenticity</h3>
+              <p style="margin:10px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">In who you are, and what you build. The best products aren't for everyone — but the people who use them, love them.</p>
+            </div>
+          </div>
+        </div>
+        <div style="flex:1 1 300px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:30px 34px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+          <div style="display:flex;gap:18px;align-items:flex-start;">
+            <span style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#F7F5F1;box-shadow:inset 2px 2px 6px rgba(30,42,58,0.10), inset -2px -2px 6px rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#D95A3F;">4</span>
+            <div>
+              <h3 style="margin:4px 0 0;font-size:22px;font-weight:500;letter-spacing:-0.01em;color:#1E2A3A;">Comfort with ambiguity</h3>
+              <p style="margin:10px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">Value doesn't have to wait for perfect conditions. Your intuition holds value.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- principles -->
+    <div data-reveal style="margin-top:80px;">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.5);">Principles</div>
+      <div style="margin-top:22px;background:#EFECE7;border-radius:24px;box-shadow:inset 3px 3px 10px rgba(30,42,58,0.07), inset -3px -3px 10px rgba(255,255,255,0.9);padding:14px 30px;">
+
+        <div style="display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid rgba(30,42,58,0.08);">
+          <span style="flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#F7F5F1;box-shadow:-2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(30,42,58,0.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#D95A3F;">1</span>
+          <div style="flex:1;min-width:0;">
+            <p style="margin:2px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.78);">Narrow scope always beats wide scope, and end-to-end delivery beats loose ends. Deliver simple, end-to-end usable increments first — and only then add more features.</p>
+            <details style="margin-top:12px;">
+              <summary style="display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#D95A3F;cursor:pointer;user-select:none;"><span data-plus style="display:inline-block;transition:transform 240ms cubic-bezier(0.22,0.61,0.36,1);font-size:15px;line-height:1;font-weight:400;">+</span> Napoleon's passion for immediate usefulness</summary>
+              <p style="margin:12px 0 0;font-size:13px;line-height:1.65;font-style:italic;color:rgba(30,42,58,0.55);max-width:58ch;">Napoleon "would make sure that it was built in stages and that at the end of each stage it could be put to some use... If the wing of a palace, or a stretch of road or canal, could be put to use after the first year, then its cost began to be amortized. By the time the whole was completed, it had paid for itself."</p>
+            </details>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid rgba(30,42,58,0.08);">
+          <span style="flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#F7F5F1;box-shadow:-2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(30,42,58,0.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#D95A3F;">2</span>
+          <p style="flex:1;margin:2px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.78);">Development tools are available to more people than ever. Your job is to add sensible friction and steer this potential towards maximal value — which takes curiosity and a holistic view of the business.</p>
+        </div>
+
+        <div style="display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid rgba(30,42,58,0.08);flex-wrap:wrap;">
+          <span style="flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#F7F5F1;box-shadow:-2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(30,42,58,0.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#D95A3F;">3</span>
+          <div style="flex:1 1 300px;min-width:min(100%, 300px);">
+            <p style="margin:2px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.78);">You (and your products) don't do everything for everyone.</p>
+          </div>
+          <figure style="flex:1 1 220px;max-width:280px;margin:0;">
+            <image-slot id="principle-clock" shape="rounded" radius="14" style="width:100%;height:160px;" placeholder="Drop: clock in the car dashboard"></image-slot>
+            <figcaption style="margin-top:8px;font-size:12px;font-style:italic;color:rgba(30,42,58,0.45);">drivers read the time without taking their hands off the steering wheel</figcaption>
+          </figure>
+        </div>
+
+        <div style="display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid rgba(30,42,58,0.08);">
+          <span style="flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#F7F5F1;box-shadow:-2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(30,42,58,0.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#D95A3F;">4</span>
+          <div style="flex:1;min-width:0;">
+            <p style="margin:2px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.78);">Every line of code is an investment. Features are constantly competing to earn their place on the Roadmap (and Production). You hold this logic by tracking their potential and current contribution to business goals.</p>
+            <details style="margin-top:12px;">
+              <summary style="display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#D95A3F;cursor:pointer;user-select:none;"><span data-plus style="display:inline-block;transition:transform 240ms cubic-bezier(0.22,0.61,0.36,1);font-size:15px;line-height:1;font-weight:400;">+</span> learn more: TARS</summary>
+              <div style="margin-top:14px;background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+                <p style="margin:0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.72);">TARS (from Reforge) checks whether a feature has earned its spot on production: who it's for (<strong style="font-weight:600;color:#D95A3F;">T</strong>arget audience), how many of them tried it (<strong style="font-weight:600;color:#D95A3F;">A</strong>doption), how many kept using it (<strong style="font-weight:600;color:#D95A3F;">R</strong>etention) and how many of those are happy (<strong style="font-weight:600;color:#D95A3F;">S</strong>atisfaction). Each step is a share of the one before, so you can see exactly where value leaks.</p>
+                <p style="margin:12px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.55);">Example: recommendations in an online shop target 30% of active users. 20% of them adopt it in month one, 40% of those are still using it after three months, and 80% of those are satisfied.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid rgba(30,42,58,0.08);">
+          <span style="flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#F7F5F1;box-shadow:-2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(30,42,58,0.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#D95A3F;">5</span>
+          <p style="flex:1;margin:2px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.78);">You can truly change only what you actively measure. Don't be afraid to define "common knowledge": what is a good experience? How does success actually look? How do we know we've reached Product-Market-Fit?</p>
+        </div>
+
+        <div style="display:flex;gap:20px;align-items:flex-start;padding:24px 0;">
+          <span style="flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#F7F5F1;box-shadow:-2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(30,42,58,0.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#D95A3F;">6</span>
+          <p style="flex:1;margin:2px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.78);">The quality of the outcome is reflected in the quality of the process. At least half of your job lives in "soft" space — changing how the organization works, negotiating priorities, connecting stakeholders.</p>
+        </div>
+      </div>
+    </div>
+
+    <div data-reveal style="margin-top:60px;">
+      <x-import component-from-global-scope="HoursDesignSystem_a6c7f7.Quote" tone="sunrise" dc-props="{{ quoteA }}" hint-size="100%,230px">AI products are still products. They exist to solve problems.</x-import>
+      <p style="margin:20px auto 0;font-size:14px;line-height:1.7;color:rgba(30,42,58,0.55);max-width:620px;text-align:center;">The core principles stay the same. Everything outside of them has changed — and that is the topic of this course.</p>
+    </div>
+  </section>
+
+  <!-- divider -->
+  <div style="max-width:1120px;margin:100px auto 0;padding:0 28px;display:flex;align-items:flex-end;" aria-hidden="true">
+    <div style="flex:1;height:1px;background:rgba(30,42,58,0.12);"></div>
+    <span style="width:18px;height:9px;border-radius:18px 18px 0 0;background:var(--gradient-mark);margin:0 3px;"></span>
+    <div style="flex:1;height:1px;background:rgba(30,42,58,0.12);"></div>
+  </div>
+
+  <!-- ════════════ 02 · NEW FORMS ════════════ -->
+  <section id="ch-2" data-chapter="ch-2" data-screen-label="02 New forms of products" style="max-width:1120px;margin:0 auto;padding:110px 28px 0;scroll-margin-top:90px;">
+    <div data-reveal style="display:flex;align-items:baseline;gap:22px;">
+      <span style="font-size:110px;font-weight:300;line-height:0.8;color:rgba(30,42,58,0.08);letter-spacing:-0.03em;" aria-hidden="true">02</span>
+      <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.5);">New forms of products</span>
+    </div>
+    <h2 data-reveal style="margin:30px 0 0;font-size:clamp(30px, 4vw, 42px);line-height:1.12;letter-spacing:-0.02em;font-weight:300;color:#1E2A3A;max-width:680px;text-wrap:pretty;">A product is something which solves a relevant problem. Hold that, and you'll move easily through different product shapes.</h2>
+
+    <div style="display:flex;flex-direction:column;gap:26px;margin-top:54px;">
+      <div data-reveal style="display:flex;flex-wrap:wrap;gap:30px;align-items:flex-start;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:24px;padding:34px 38px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+        <div style="flex:1 1 240px;min-width:min(100%, 240px);">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#D95A3F;">Shape one</div>
+          <h3 style="margin:10px 0 0;font-size:26px;font-weight:300;letter-spacing:-0.015em;color:#1E2A3A;">API as a product</h3>
+        </div>
+        <div style="flex:2 1 340px;min-width:min(100%, 340px);">
+          <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">The product is a capability that other people's code uses, so your user is a developer. Success means a developer can get value fast and on their own.</p>
+          <div style="margin-top:18px;background:#EFECE7;border-radius:14px;box-shadow:inset 2px 2px 7px rgba(30,42,58,0.07), inset -2px -2px 7px rgba(255,255,255,0.9);padding:16px 20px;">
+            <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">Stripe</div>
+            <p style="margin:6px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Stripe sells payments as a few lines of code. Its developer docs and quick setup are the product experience — that's why so many companies built on it and never left.</p>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal style="display:flex;flex-wrap:wrap;gap:30px;align-items:flex-start;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:24px;padding:34px 38px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+        <div style="flex:1 1 240px;min-width:min(100%, 240px);">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#D95A3F;">Shape two</div>
+          <h3 style="margin:10px 0 0;font-size:26px;font-weight:300;letter-spacing:-0.015em;color:#1E2A3A;">Data as a service</h3>
+          <div style="margin-top:14px;background:#FFF5EB;border-radius:14px;padding:14px 16px;transform:rotate(-0.5deg);">
+            <p style="margin:0;font-size:12px;line-height:1.6;color:rgba(30,42,58,0.55);">Think about which data your solutions touch — and how, separate from your current solution, it would bring value for the business.</p>
+          </div>
+        </div>
+        <div style="flex:2 1 340px;min-width:min(100%, 340px);">
+          <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">The product is the data itself: clean, trusted and kept up to date, delivered on demand. You don't compete on features — you compete on accuracy, coverage and freshness.</p>
+          <div style="margin-top:18px;background:#EFECE7;border-radius:14px;box-shadow:inset 2px 2px 7px rgba(30,42,58,0.07), inset -2px -2px 7px rgba(255,255,255,0.9);padding:16px 20px;">
+            <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">Nielsen</div>
+            <p style="margin:6px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Nielsen doesn't make a single TV show. It just tells the industry who watched — and billions in advertising are priced on that number.</p>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal style="display:flex;flex-wrap:wrap;gap:30px;align-items:flex-start;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:24px;padding:34px 38px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+        <div style="flex:1 1 240px;min-width:min(100%, 240px);">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#D95A3F;">Shape three</div>
+          <h3 style="margin:10px 0 0;font-size:26px;font-weight:300;letter-spacing:-0.015em;color:#1E2A3A;">Productized service</h3>
+        </div>
+        <div style="flex:2 1 340px;min-width:min(100%, 340px);">
+          <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">Custom expert work turned into a repeatable offering with a fixed scope and price — often packaged as software with tools.</p>
+          <div style="margin-top:18px;background:#EFECE7;border-radius:14px;box-shadow:inset 2px 2px 7px rgba(30,42,58,0.07), inset -2px -2px 7px rgba(255,255,255,0.9);padding:16px 20px;">
+            <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">Databricks</div>
+            <p style="margin:6px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Building data and AI pipelines used to mean hiring specialists for every project. Databricks packaged that expertise into a ready-to-use platform, so customers get expert-level results without hiring the experts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="max-width:1120px;margin:100px auto 0;padding:0 28px;display:flex;align-items:flex-end;" aria-hidden="true">
+    <div style="flex:1;height:1px;background:rgba(30,42,58,0.12);"></div>
+    <span style="width:18px;height:9px;border-radius:18px 18px 0 0;background:var(--gradient-mark);margin:0 3px;"></span>
+    <div style="flex:1;height:1px;background:rgba(30,42,58,0.12);"></div>
+  </div>
+
+  <!-- ════════════ 03 · NEW NATURE ════════════ -->
+  <section id="ch-3" data-chapter="ch-3" data-screen-label="03 New nature of AI products" style="max-width:1120px;margin:0 auto;padding:110px 28px 0;scroll-margin-top:90px;">
+    <div data-reveal style="display:flex;align-items:baseline;gap:22px;">
+      <span style="font-size:110px;font-weight:300;line-height:0.8;color:rgba(30,42,58,0.08);letter-spacing:-0.03em;" aria-hidden="true">03</span>
+      <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.5);">New nature of AI products</span>
+    </div>
+    <h2 data-reveal style="margin:30px 0 0;font-size:clamp(30px, 4vw, 42px);line-height:1.12;letter-spacing:-0.02em;font-weight:300;color:#1E2A3A;max-width:640px;text-wrap:pretty;">From <span style="color:rgba(30,42,58,0.4);">deterministic</span> to <span style="color:#D95A42;">probabilistic</span>.</h2>
+    <p data-reveal style="margin:22px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);max-width:600px;">The new ways we build and use AI products as Product Managers.</p>
+
+    <!-- loops & layers -->
+    <div data-reveal style="margin-top:54px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:24px;padding:36px 38px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#D95A3F;">Loops &amp; layers</div>
+      <p style="margin:12px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);max-width:620px;">Projects run in cycles. Self-healing products run in loops and layers, where each layer's output is the next one's input:</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:26px;align-items:stretch;">
+        <div style="flex:1 1 180px;background:#EFECE7;border-radius:16px;box-shadow:inset 2px 2px 7px rgba(30,42,58,0.07), inset -2px -2px 7px rgba(255,255,255,0.9);padding:20px 22px;">
+          <div style="font-size:11px;font-weight:600;color:#D95A3F;">1 · Sense</div>
+          <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">What users do, who they are, what's changing in the macro space.</p>
+        </div>
+        <div style="flex:1 1 180px;background:#EFECE7;border-radius:16px;box-shadow:inset 2px 2px 7px rgba(30,42,58,0.07), inset -2px -2px 7px rgba(255,255,255,0.9);padding:20px 22px;">
+          <div style="font-size:11px;font-weight:600;color:#D95A3F;">2 · Synthesise</div>
+          <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Signals are cross-referenced against business goals; a fresh tech-business hypothesis is printed out.</p>
+        </div>
+        <div style="flex:1 1 180px;background:#EFECE7;border-radius:16px;box-shadow:inset 2px 2px 7px rgba(30,42,58,0.07), inset -2px -2px 7px rgba(255,255,255,0.9);padding:20px 22px;">
+          <div style="font-size:11px;font-weight:600;color:#D95A3F;">3 · Ship</div>
+          <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">The smallest slice that moves the KPI is built by agents, with a human in the loop.</p>
+        </div>
+        <div style="flex:1 1 180px;background:#EFECE7;border-radius:16px;box-shadow:inset 2px 2px 7px rgba(30,42,58,0.07), inset -2px -2px 7px rgba(255,255,255,0.9);padding:20px 22px;">
+          <div style="font-size:11px;font-weight:600;color:#D95A3F;">4 · Validate</div>
+          <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Synthetic audience, previews and release rings make sure the rollout scales as KPIs are hit.</p>
+        </div>
+      </div>
+      <p style="margin:20px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.5);">With each loop the product becomes smarter; iterations get cheaper and faster as you move towards a <a href="https://dusankolenovic.github.io/self-healing/">self-healing product</a>.</p>
+    </div>
+
+    <!-- speed -->
+    <div data-reveal style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:64px;">
+      <div style="flex:1 1 420px;min-width:min(100%, 420px);max-width:640px;">
+        <h3 style="margin:0;font-size:24px;font-weight:400;letter-spacing:-0.01em;color:#1E2A3A;">Speed</h3>
+        <p style="margin:12px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">No one is holding their breath for large release cycles — they get replaced by a shorter cadence of slice deployments.</p>
+        <div style="display:inline-flex;align-items:center;gap:12px;margin-top:16px;padding:12px 22px;border-radius:999px;background:#EFECE7;box-shadow:inset 2px 2px 7px rgba(30,42,58,0.07), inset -2px -2px 7px rgba(255,255,255,0.9);font-size:14px;font-weight:600;color:#1E2A3A;letter-spacing:0.01em;">Ship <span style="color:#D95A3F;">→</span> Measure <span style="color:#D95A3F;">→</span> Repeat</div>
+        <p style="margin:16px 0 0;font-size:14px;line-height:1.7;font-style:italic;color:rgba(30,42,58,0.5);">You'll know you're at the right pace when your release notes start looking like a chat thread.</p>
+      </div>
+      <aside style="flex:1 1 220px;max-width:270px;background:#FFF5EB;border-radius:16px;padding:18px 20px;transform:rotate(0.6deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="width:14px;height:7px;border-radius:14px 14px 0 0;background:var(--gradient-mark);"></span>
+          <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">Spotify</span>
+        </div>
+        <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Spotify now ships about 4,500 production deployments a day. Idea to production used to take weeks or months — now it takes about an hour.</p>
+      </aside>
+    </div>
+
+    <!-- building ahead -->
+    <div data-reveal style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:56px;">
+      <div style="flex:1 1 420px;min-width:min(100%, 420px);max-width:640px;">
+        <h3 style="margin:0;font-size:24px;font-weight:400;letter-spacing:-0.01em;color:#1E2A3A;">Building ahead of time is normal</h3>
+        <p style="margin:12px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">Classical roadmaps commit only to what today's technology can reliably deliver. AI products <strong style="font-weight:600;color:#1E2A3A;">deliberately</strong> ship a capability before the model is fully ready to support it. For the first time in history, you are literally building for tomorrow.</p>
+      </div>
+      <aside style="flex:1 1 220px;max-width:270px;background:#FFF5EB;border-radius:16px;padding:18px 20px;transform:rotate(-0.5deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="width:14px;height:7px;border-radius:14px 14px 0 0;background:var(--gradient-mark);"></span>
+          <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">Anthropic</span>
+        </div>
+        <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Built the harness for code review before the model was good enough. It shipped the moment accuracy crossed the team's trust threshold — and a shelf of such prototypes is re-tested with every model release.</p>
+      </aside>
+    </div>
+
+    <!-- twin cards -->
+    <div data-reveal style="display:flex;gap:22px;flex-wrap:wrap;margin-top:56px;">
+      <div style="flex:1 1 300px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:28px 32px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+        <h3 style="margin:0;font-size:18px;font-weight:600;color:#1E2A3A;">Compounding products</h3>
+        <p style="margin:10px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">Traditional features ship once and get used many times. The AI way makes solutions smarter (and cheaper) over time, and extends them across personas and industries seamlessly.</p>
+      </div>
+      <div style="flex:1 1 300px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:28px 32px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+        <h3 style="margin:0;font-size:18px;font-weight:600;color:#1E2A3A;">Dynamic products</h3>
+        <p style="margin:10px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">Traditional tools stay roughly as capable as the day they shipped. An AI solution decays without active ownership of its guardrails and eval context.</p>
+      </div>
+      <div style="flex:1 1 300px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:28px 32px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+        <h3 style="margin:0;font-size:18px;font-weight:600;color:#1E2A3A;">Cleaning is part of building</h3>
+        <p style="margin:10px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">Every model release is a signal to remove something. Prompts, guardrails and workarounds built for older models add unnecessary complexity — revisit them. Anthropic cut 20% of a system prompt in one upgrade.</p>
+      </div>
+    </div>
+
+    <!-- teams -->
+    <div data-reveal style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:64px;">
+      <div style="flex:1 1 420px;min-width:min(100%, 420px);max-width:640px;">
+        <h3 style="margin:0;font-size:24px;font-weight:400;letter-spacing:-0.01em;color:#1E2A3A;">Teams now own problems</h3>
+        <p style="margin:12px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">The classical team is organized by function — product, design, engineering, quality. The AI-native team reorganizes around the problem it needs to solve.</p>
+        <p style="margin:14px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">One caution: fast deployment in slices can leave the customer experience fragmented, breaking the user's mental model. Continuous usability testing and a great partnership with the QA crew keep it feeling like one product.</p>
+      </div>
+      <aside style="flex:1 1 220px;max-width:270px;background:#FFF5EB;border-radius:16px;padding:18px 20px;transform:rotate(0.5deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="width:14px;height:7px;border-radius:14px 14px 0 0;background:var(--gradient-mark);"></span>
+          <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">DoorDash</span>
+        </div>
+        <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Small teams of 3–5 people, each owning a domain end-to-end, move 3–5x faster with AI.</p>
+      </aside>
+    </div>
+
+    <!-- adoption frictions -->
+    <div data-reveal style="margin-top:64px;">
+      <h3 style="margin:0;font-size:24px;font-weight:400;letter-spacing:-0.01em;color:#1E2A3A;">Completely new adoption frictions</h3>
+      <div style="display:flex;gap:22px;flex-wrap:wrap;margin-top:24px;">
+        <div style="flex:1 1 260px;background:#EFECE7;border-radius:18px;box-shadow:inset 3px 3px 8px rgba(30,42,58,0.07), inset -3px -3px 8px rgba(255,255,255,0.9);padding:24px 26px;">
+          <div style="font-size:13px;font-weight:600;color:#D95A3F;">Identity threat</div>
+          <p style="margin:8px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">Expert users resist AI tools that imply "the machine knows better." Design AI to support their judgment, not replace it.</p>
+        </div>
+        <div style="flex:1 1 260px;background:#EFECE7;border-radius:18px;box-shadow:inset 3px 3px 8px rgba(30,42,58,0.07), inset -3px -3px 8px rgba(255,255,255,0.9);padding:24px 26px;">
+          <div style="font-size:13px;font-weight:600;color:#D95A3F;">Automation bias</div>
+          <p style="margin:8px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">Users who trust the AI too much stop checking it. Be transparent with confidence levels and sources, and send uncertain cases to a human.</p>
+        </div>
+        <div style="flex:1 1 260px;background:#EFECE7;border-radius:18px;box-shadow:inset 3px 3px 8px rgba(30,42,58,0.07), inset -3px -3px 8px rgba(255,255,255,0.9);padding:24px 26px;">
+          <div style="font-size:13px;font-weight:600;color:#D95A3F;">Accountability gaps</div>
+          <p style="margin:8px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">AI solutions are still tools. If no one knows who owns an AI-assisted decision, adoption drops. Put a named person behind every decision.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- role changing -->
+    <div data-reveal style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:64px;">
+      <div style="flex:1 1 420px;min-width:min(100%, 420px);max-width:640px;">
+        <h3 style="margin:0;font-size:24px;font-weight:400;letter-spacing:-0.01em;color:#1E2A3A;">Your role is changing</h3>
+        <p style="margin:12px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">The execution part of your job is getting automated: backlog grooming, PRD drafting, ticket writing, status updates. What stays is judgment, taste and vision — choosing the right problems, defining what "good" looks like, looking ahead on the business and model capability, designing the guardrails and eval sets.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
+          <span style="font-size:12px;font-weight:500;color:#1E2A3A;padding:8px 16px;border-radius:999px;background:#F7F5F1;box-shadow:-3px -3px 8px rgba(255,255,255,0.9), 4px 4px 10px rgba(30,42,58,0.10);">AI Product Manager</span>
+          <span style="font-size:12px;font-weight:500;color:#1E2A3A;padding:8px 16px;border-radius:999px;background:#F7F5F1;box-shadow:-3px -3px 8px rgba(255,255,255,0.9), 4px 4px 10px rgba(30,42,58,0.10);">Data Product Manager</span>
+          <span style="font-size:12px;font-weight:500;color:#1E2A3A;padding:8px 16px;border-radius:999px;background:#F7F5F1;box-shadow:-3px -3px 8px rgba(255,255,255,0.9), 4px 4px 10px rgba(30,42,58,0.10);">Forward Deployed PM</span>
+        </div>
+      </div>
+      <aside style="flex:1 1 220px;max-width:270px;background:#FFF5EB;border-radius:16px;padding:18px 20px;transform:rotate(-0.6deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="width:14px;height:7px;border-radius:14px 14px 0 0;background:var(--gradient-mark);"></span>
+          <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">Grow with it</span>
+        </div>
+        <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Think ahead about which direction you want to grow in — and <a href="{{ mailto }}">get in touch</a> so we can plan it together.</p>
+      </aside>
+    </div>
+  </section>
+
+  <div style="max-width:1120px;margin:100px auto 0;padding:0 28px;display:flex;align-items:flex-end;" aria-hidden="true">
+    <div style="flex:1;height:1px;background:rgba(30,42,58,0.12);"></div>
+    <span style="width:18px;height:9px;border-radius:18px 18px 0 0;background:var(--gradient-mark);margin:0 3px;"></span>
+    <div style="flex:1;height:1px;background:rgba(30,42,58,0.12);"></div>
+  </div>
+
+  <!-- ════════════ 04 · HUMAN EDGE ════════════ -->
+  <section id="ch-4" data-chapter="ch-4" data-screen-label="04 Judgment Taste Vision" style="max-width:1120px;margin:0 auto;padding:110px 28px 0;scroll-margin-top:90px;">
+    <div data-reveal style="display:flex;align-items:baseline;gap:22px;">
+      <span style="font-size:110px;font-weight:300;line-height:0.8;color:rgba(30,42,58,0.08);letter-spacing:-0.03em;" aria-hidden="true">04</span>
+      <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.5);">Uniquely human</span>
+    </div>
+    <h2 data-reveal style="margin:30px 0 0;font-size:clamp(30px, 4vw, 42px);line-height:1.12;letter-spacing:-0.02em;font-weight:300;color:#1E2A3A;max-width:620px;text-wrap:pretty;"><span style="color:#D95A42;">Judgment.</span> <span style="color:#C05882;">Taste.</span> <span style="color:#8B7FC7;">Vision.</span></h2>
+    <p data-reveal style="margin:22px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);max-width:640px;">Models are trained on what was already done. They have no access to what is felt, or the shared experience behind genuine connection. When every operational aspect of your work gets automated, your judgment, vision and taste are left — your authentic human perspective on work.</p>
+
+    <div data-reveal style="margin-top:60px;">
+      <h3 style="margin:0;font-size:24px;font-weight:400;letter-spacing:-0.01em;color:#1E2A3A;">How do I know what to hand over to AI?</h3>
+      <p style="margin:10px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">Three flavours to choose from — the cheat sheet:</p>
+      <!-- spectrum track -->
+      <div style="margin-top:28px;background:#EFECE7;border-radius:999px;box-shadow:inset 2px 2px 7px rgba(30,42,58,0.08), inset -2px -2px 7px rgba(255,255,255,0.9);height:12px;position:relative;max-width:720px;">
+        <div style="position:absolute;inset:3px;border-radius:999px;background:linear-gradient(90deg, rgba(255,176,136,0.7), rgba(242,112,89,0.7), rgba(155,143,212,0.7));"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;max-width:720px;margin-top:10px;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">
+        <span>Automation</span><span>Augmentation</span><span>Agentic</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:26px;margin-top:40px;">
+      <div data-reveal style="display:flex;flex-wrap:wrap;gap:30px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:24px;padding:34px 38px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);border-top:3px solid #FFB088;">
+        <div style="flex:1 1 240px;min-width:min(100%, 240px);">
+          <h3 style="margin:0;font-size:24px;font-weight:300;letter-spacing:-0.01em;color:#1E2A3A;">Automation</h3>
+          <p style="margin:8px 0 0;font-size:13px;font-weight:500;color:#D95A3F;">AI takes over the entire process, zero supervision.</p>
+        </div>
+        <div style="flex:2 1 340px;min-width:min(100%, 340px);">
+          <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">The process is repetitive, has clear steps you can write in advance, is tedious, not creative, and always has the same goal. Every run takes the same path, "good" output can be clearly measured, and errors are cheap and easy to spot.</p>
+          <div style="margin-top:16px;background:#FFF5EB;border-radius:14px;padding:14px 18px;">
+            <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.4);">Examples</div>
+            <p style="margin:6px 0 0;font-size:13px;line-height:1.65;color:rgba(30,42,58,0.6);">Pulling name, date and total from an invoice · turning a list of specs into a product description · localising documentation while keeping its tone.</p>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal style="display:flex;flex-wrap:wrap;gap:30px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:24px;padding:34px 38px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);border-top:3px solid #F27059;">
+        <div style="flex:1 1 240px;min-width:min(100%, 240px);">
+          <h3 style="margin:0;font-size:24px;font-weight:300;letter-spacing:-0.01em;color:#1E2A3A;">Augmentation</h3>
+          <p style="margin:8px 0 0;font-size:13px;font-weight:500;color:#D95A3F;">AI handles the volume, the human handles the judgment.</p>
+        </div>
+        <div style="flex:2 1 340px;min-width:min(100%, 340px);">
+          <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">High volume and pattern-rich, but the stakes are high, so accountability stays with the expert, who verifies quality, viability and compliance. "Good" is judged by eye — no objective pass or fail — so AI acts as a sparring partner while the human sets the direction. Augmentation moves the human from creator to curator.</p>
+          <div style="margin-top:16px;background:#FFF5EB;border-radius:14px;padding:14px 18px;">
+            <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.4);">Examples</div>
+            <p style="margin:6px 0 0;font-size:13px;line-height:1.65;color:rgba(30,42,58,0.6);">AI drafts the requirements and design spec from the PM's intent; the product owner reviews instead of writing · AI builds three throwaway prototypes of a new screen; the team clicks through and picks a direction by eye.</p>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal style="display:flex;flex-wrap:wrap;gap:30px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:24px;padding:34px 38px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);border-top:3px solid #9B8FD4;">
+        <div style="flex:1 1 240px;min-width:min(100%, 240px);">
+          <h3 style="margin:0;font-size:24px;font-weight:300;letter-spacing:-0.01em;color:#1E2A3A;">Agentic solutions</h3>
+          <p style="margin:8px 0 0;font-size:13px;font-weight:500;color:#8B7FC7;">AI acts on its own toward a goal, deciding the next step at runtime.</p>
+        </div>
+        <div style="flex:2 1 340px;min-width:min(100%, 340px);">
+          <div style="margin:0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">The goal is clear, but the path isn't. Work has to be broken into subtasks and progress evaluated along the way, not at the end. It spans many sources and formats and needs memory to do its work.
+            <details style="display:inline-block;position:relative;vertical-align:-3px;margin-left:4px;">
+              <summary style="width:20px;height:20px;border-radius:50%;background:#F7F5F1;box-shadow:-2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(30,42,58,0.14);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;font-style:italic;color:#8B7FC7;cursor:pointer;user-select:none;" style-hover="transform:scale(1.1);">i</summary>
+              <div style="position:absolute;right:-10px;top:calc(100% + 10px);width:260px;background:#fff;border-radius:14px;box-shadow:0 4px 40px rgba(30,42,58,0.16), 0 1px 4px rgba(30,42,58,0.08);padding:14px 16px;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.72);z-index:40;">A tell-tale sign you need this: your automated workflow needed many exceptions.</div>
+            </details>
+          </div>
+          <div style="margin-top:16px;background:#FFF5EB;border-radius:14px;padding:14px 18px;">
+            <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.4);">Examples</div>
+            <p style="margin:6px 0 0;font-size:13px;line-height:1.65;color:rgba(30,42,58,0.6);">Monitoring an industry news feed and alerting legal only when a regulatory change affects current products · extracting liability clauses from 50 contracts and flagging deviations from the standard.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p data-reveal style="margin:30px 0 0;font-size:14px;line-height:1.7;color:rgba(30,42,58,0.55);max-width:640px;">Of course, this is a spectrum. The same workflow moves from augmentation toward automation as trust and specification improve — and with each model release the lines move. Revisit your decisions here.</p>
+
+    <div data-reveal style="margin-top:44px;position:relative;overflow:hidden;background:var(--gradient-warm);border-radius:22px;padding:30px 34px;">
+      <div style="position:absolute;inset:0;pointer-events:none;background-image:var(--grain);background-size:128px;"></div>
+      <div style="position:relative;display:flex;flex-wrap:wrap;gap:20px;align-items:center;">
+        <p style="flex:1 1 320px;margin:0;font-size:17px;line-height:1.6;font-weight:300;color:#fff;">Check your surroundings. Are you striking the right balance between your (human) work and AI?</p>
+        <a href="{{ mailto }}" style="flex-shrink:0;font-size:13px;font-weight:600;color:#fff;text-decoration:none;padding:11px 22px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.35);backdrop-filter:blur(8px);" style-hover="background:rgba(255,255,255,0.3);" style-active="transform:scale(0.97);">Let's talk →</a>
+      </div>
+    </div>
+  </section>
+
+  <div style="max-width:1120px;margin:100px auto 0;padding:0 28px;display:flex;align-items:flex-end;" aria-hidden="true">
+    <div style="flex:1;height:1px;background:rgba(30,42,58,0.12);"></div>
+    <span style="width:18px;height:9px;border-radius:18px 18px 0 0;background:var(--gradient-mark);margin:0 3px;"></span>
+    <div style="flex:1;height:1px;background:rgba(30,42,58,0.12);"></div>
+  </div>
+
+  <!-- ════════════ 05 · WHAT TO BUILD ════════════ -->
+  <section id="ch-5" data-chapter="ch-5" data-screen-label="05 What to build" style="max-width:1120px;margin:0 auto;padding:110px 28px 0;scroll-margin-top:90px;">
+    <div data-reveal style="display:flex;align-items:baseline;gap:22px;">
+      <span style="font-size:110px;font-weight:300;line-height:0.8;color:rgba(30,42,58,0.08);letter-spacing:-0.03em;" aria-hidden="true">05</span>
+      <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.5);">What to build?</span>
+    </div>
+    <div data-reveal style="margin-top:30px;">
+      <x-import component-from-global-scope="HoursDesignSystem_a6c7f7.Quote" tone="glass" dc-props="{{ quoteB }}" hint-size="100%,210px">WHAT you decide to build is as equally important as HOW you decide. The quality of an outcome is reflected in the quality of the process behind it.</x-import>
+    </div>
+
+    <div data-reveal style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:56px;">
+      <div style="flex:1 1 420px;min-width:min(100%, 420px);max-width:640px;">
+        <h3 style="margin:0;font-size:24px;font-weight:400;letter-spacing:-0.01em;color:#1E2A3A;">Production reality</h3>
+        <p style="margin:12px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);"><strong style="font-weight:600;color:#1E2A3A;">Production reality exists long before your solution does.</strong> It is how the work is done today: the real people, the real workflows, the real data, the tools they already juggle and the workarounds they built to get through the day.</p>
+        <p style="margin:14px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">Your product will not land in empty space. It lands inside a rich context of actual workflows and the psychological expectations of your stakeholders. Understanding both marks the difference between your audience accepting or rejecting your solution.</p>
+      </div>
+      <aside style="flex:1 1 220px;max-width:270px;background:#FFF5EB;border-radius:16px;padding:18px 20px;transform:rotate(0.5deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="width:14px;height:7px;border-radius:14px 14px 0 0;background:var(--gradient-mark);"></span>
+          <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">Ask yourself</span>
+        </div>
+        <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">How informed are you about the workflows and expectations of your audience? What is done "because we've always done it this way" — and could clearly be improved? <a href="{{ mailto }}">Let me know.</a></p>
+      </aside>
+    </div>
+
+    <!-- two KPIs -->
+    <div data-reveal style="display:flex;gap:22px;flex-wrap:wrap;margin-top:44px;">
+      <div style="flex:1 1 280px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:30px 34px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+        <div style="font-size:34px;font-weight:300;letter-spacing:-0.02em;color:#D95A42;">Adoption</div>
+        <div style="margin-top:6px;font-size:13px;font-weight:500;color:rgba(30,42,58,0.6);">your single most <strong style="font-weight:600;color:#1E2A3A;">tactical</strong> KPI</div>
+      </div>
+      <div style="flex:1 1 280px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:30px 34px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+        <div style="font-size:34px;font-weight:300;letter-spacing:-0.02em;color:#8B7FC7;">Business goal</div>
+        <div style="margin-top:6px;font-size:13px;font-weight:500;color:rgba(30,42,58,0.6);">your single <strong style="font-weight:600;color:#1E2A3A;">strategic</strong> KPI</div>
+      </div>
+    </div>
+
+    <!-- three field notes -->
+    <div data-reveal style="display:flex;gap:22px;flex-wrap:wrap;margin-top:44px;">
+      <div style="flex:1 1 260px;background:#FFF5EB;border-radius:18px;padding:22px 24px;transform:rotate(-0.7deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+        <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.4);">Field note</div>
+        <p style="margin:8px 0 0;font-size:13px;line-height:1.65;color:rgba(30,42,58,0.65);"><strong style="font-weight:600;color:#1E2A3A;">What people do beats what people say.</strong> Users can't really say what they need — take it <a href="https://ed.ted.com/lessons/malcolm-gladwell-on-spaghetti-sauce">from this billion-dollar spaghetti-sauce case</a>.</p>
+      </div>
+      <div style="flex:1 1 260px;background:#FFF5EB;border-radius:18px;padding:22px 24px;transform:rotate(0.5deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+        <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.4);">Field note</div>
+        <p style="margin:8px 0 0;font-size:13px;line-height:1.65;color:rgba(30,42,58,0.65);"><strong style="font-weight:600;color:#1E2A3A;">Treat user hacks as product signals.</strong> When users duct-tape a workflow or copy data between systems, take notes — they're solving a problem existing solutions don't cover yet.</p>
+      </div>
+      <div style="flex:1 1 260px;background:#FFF5EB;border-radius:18px;padding:22px 24px;transform:rotate(-0.4deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+        <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.4);">Field note</div>
+        <p style="margin:8px 0 0;font-size:13px;line-height:1.65;color:rgba(30,42,58,0.65);"><strong style="font-weight:600;color:#1E2A3A;">Your biggest competitor is sometimes inertia.</strong> Doing things like in the past. That's why Apple recognized <a href="https://www.youtube.com/watch?v=Pamp80fTxa4">a pen</a> — not Samsung — as the iPad's biggest competitor.</p>
+      </div>
+    </div>
+
+    <!-- inception rail -->
+    <div data-reveal style="margin-top:80px;">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.5);">Inception phase</div>
+      <p style="margin:14px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);max-width:620px;">You streamline work by adding sensible friction — with these conversations and processes set in place:</p>
+      <div style="margin-top:28px;border-left:2px solid rgba(242,112,89,0.25);padding-left:30px;display:flex;flex-direction:column;gap:28px;">
+        <div>
+          <div style="font-size:15px;font-weight:600;color:#1E2A3A;">Prioritization</div>
+          <span style="display:inline-block;margin-top:6px;font-size:11px;font-weight:500;color:rgba(30,42,58,0.45);padding:5px 12px;border-radius:999px;border:1px dashed rgba(30,42,58,0.25);">content coming</span>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:#1E2A3A;">Stakeholder &amp; risk mapping</div>
+          <p style="margin:6px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.6);max-width:58ch;">Before kicking off any process, send over the template and work with your stakeholders to fill it up.</p>
+          <span style="display:inline-block;margin-top:8px;font-size:11px;font-weight:500;color:rgba(30,42,58,0.45);padding:5px 12px;border-radius:999px;border:1px dashed rgba(30,42,58,0.25);">template coming</span>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:#1E2A3A;">Idea → development ready</div>
+          <p style="margin:6px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.6);max-width:58ch;">Once aligned on prioritisation, stakeholders and risks, use this accelerated Discovery to make sure your development team receives clear, validated scope.</p>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:#1E2A3A;">No backlog graveyard</div>
+          <p style="margin:6px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.6);max-width:58ch;">Replaces long static backlog lists — each idea, initiative, sketch or prototype gets its dedicated place in the roadmap, based entirely on its maturity and readiness.</p>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:#1E2A3A;">Supporting your engineering team</div>
+          <p style="margin:6px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.6);max-width:58ch;">Engineers care about autonomy, interesting problems and quality. Leave the "how" to them, but guide the narrative on <a href="https://youtu.be/t705r8ICkRw?t=1050">what should be built</a>. Protect the team from outside pressure — provide the air support for a great signal-to-noise ratio.</p>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:#1E2A3A;">Building vs waiting</div>
+          <div style="margin:6px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.6);max-width:58ch;">When waiting on a stakeholder but with a firm sense of the next step: build first and use the prototype to get your feedback, instead of waiting for it in written form. Anthropic calls this a <a href="https://support.claude.com/en/articles/14503520-available-beta-and-research-preview-features">Research preview</a>.
+            <details style="display:inline-block;position:relative;vertical-align:-3px;margin-left:4px;">
+              <summary style="width:20px;height:20px;border-radius:50%;background:#F7F5F1;box-shadow:-2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(30,42,58,0.14);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;font-style:italic;color:#D95A3F;cursor:pointer;user-select:none;" style-hover="transform:scale(1.1);">i</summary>
+              <div style="position:absolute;left:-120px;top:calc(100% + 10px);width:270px;background:#fff;border-radius:14px;box-shadow:0 4px 40px rgba(30,42,58,0.16), 0 1px 4px rgba(30,42,58,0.08);padding:14px 16px;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.72);z-index:40;">The cheapest way to resolve a debate isn't a meeting — it's a prototype and data. Evidence forms conviction better than endless argumentation.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- roadmap -->
+    <div data-reveal style="margin-top:80px;">
+      <h3 style="margin:0;font-size:24px;font-weight:400;letter-spacing:-0.01em;color:#1E2A3A;">Roadmap</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:14px;">
+        <div style="flex:1 1 420px;min-width:min(100%, 420px);max-width:640px;">
+          <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">A roadmap is a hypothesised sequence of solutions at a given moment, estimated to bring the biggest ROI in the shortest amount of time. It is a snapshot in time, a dynamic artefact — and you own it.</p>
+          <p style="margin:14px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">There is one unified product roadmap — no person X and person Y roadmap, no separate tech-debt roadmap. It can carry infrastructure, features, design and process work. Not all of it touches users, but all of it creates value.</p>
+          <p style="margin:14px 0 0;font-size:14px;line-height:1.7;font-style:italic;color:rgba(30,42,58,0.5);">"Cut onboarding to one day" is a roadmap item; "build an onboarding experience" is a task.</p>
+        </div>
+        <aside style="flex:1 1 220px;max-width:270px;background:#FFF5EB;border-radius:16px;padding:18px 20px;transform:rotate(-0.5deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="width:14px;height:7px;border-radius:14px 14px 0 0;background:var(--gradient-mark);"></span>
+            <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">Shorter horizon</span>
+          </div>
+          <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Anthropic's Claude Code six-month roadmap held up for about three months. They didn't respond with better forecasting — they simply started planning in shorter intervals.</p>
+        </aside>
+      </div>
+      <div style="display:flex;gap:22px;flex-wrap:wrap;margin-top:34px;">
+        <div style="flex:1 1 260px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:20px;padding:26px 28px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+          <div style="font-size:11px;font-weight:600;color:#D95A3F;">Shape 1</div>
+          <div style="margin-top:6px;font-size:17px;font-weight:600;color:#1E2A3A;">Feature roadmap</div>
+          <p style="margin:8px 0 0;font-size:13px;line-height:1.65;color:rgba(30,42,58,0.6);">What gets built and roughly when. Still right for regulatory deadlines, mature solutions and low-risk work on known tech.</p>
+        </div>
+        <div style="flex:1 1 260px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:20px;padding:26px 28px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+          <div style="font-size:11px;font-weight:600;color:#D95A3F;">Shape 2</div>
+          <div style="margin-top:6px;font-size:17px;font-weight:600;color:#1E2A3A;">Outcome roadmap</div>
+          <p style="margin:8px 0 0;font-size:13px;line-height:1.65;color:rgba(30,42,58,0.6);">Each team gets a business objective and decides how to reach it. Much more adjusted to the AI space. Cagan's example: "dramatically reduce time for a new customer to go live" — success is onboarding under 3 hours.</p>
+        </div>
+        <div style="flex:1 1 260px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:20px;padding:26px 28px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+          <div style="font-size:11px;font-weight:600;color:#D95A3F;">Shape 3</div>
+          <div style="margin-top:6px;font-size:17px;font-weight:600;color:#1E2A3A;">Strategic intent</div>
+          <p style="margin:8px 0 0;font-size:13px;line-height:1.65;color:rgba(30,42,58,0.6);">For leadership: no features, no dates. Where we want to be, why it matters, which constraints guide us. The team keeps the freedom to choose the path.</p>
+        </div>
+      </div>
+      <div style="margin-top:30px;background:#EFECE7;border-radius:18px;box-shadow:inset 3px 3px 8px rgba(30,42,58,0.07), inset -3px -3px 8px rgba(255,255,255,0.9);padding:22px 26px;max-width:720px;">
+        <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#D95A3F;">The new risk</div>
+        <p style="margin:8px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">You want to avoid deploying 100 individually successful slices which, in totality, break your product experience. Partner with User Insights and QA: continual usability testing catches whether a new slice introduces friction, breaks a mental model, or fragments the experience across cohorts.</p>
+      </div>
+    </div>
+
+    <!-- synthetic audience -->
+    <div data-reveal style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:80px;">
+      <div style="flex:1 1 420px;min-width:min(100%, 420px);max-width:640px;">
+        <h3 style="margin:0;font-size:24px;font-weight:400;letter-spacing:-0.01em;color:#1E2A3A;">Synthetic audience</h3>
+        <p style="margin:12px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">An AI model of your customers which you can access at any time. It is the cheapest gate in your validation loop — used to exclude bad ideas early, before a real user spends time on them.</p>
+        <p style="margin:14px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);"><strong style="font-weight:600;color:#1E2A3A;">Feed it, don't just buy it.</strong> Accuracy depends on how much real data flows in: a panel connected to your interviews, surveys, support tickets and behavioural data becomes a living audience that gets sharper with every loop.</p>
+        <p style="margin:14px 0 0;font-size:14px;line-height:1.7;color:rgba(30,42,58,0.55);"><strong style="font-weight:600;color:#D95A3F;">Pro tip:</strong> always pair it with real people. Synthetic and human forecasts combined beat either one alone — treat it as augmentation, not a replacement.</p>
+      </div>
+      <aside style="flex:1 1 220px;max-width:270px;background:#FFF5EB;border-radius:16px;padding:18px 20px;transform:rotate(0.6deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="width:14px;height:7px;border-radius:14px 14px 0 0;background:var(--gradient-mark);"></span>
+          <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">From the field</span>
+        </div>
+        <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Once live behavioural data was piped into an Electric Twin panel, usability recordings arrived pre-coded by theme — and insight-to-action dropped from two weeks to two days.</p>
+      </aside>
+    </div>
+  </section>
+
+  <div style="max-width:1120px;margin:100px auto 0;padding:0 28px;display:flex;align-items:flex-end;" aria-hidden="true">
+    <div style="flex:1;height:1px;background:rgba(30,42,58,0.12);"></div>
+    <span style="width:18px;height:9px;border-radius:18px 18px 0 0;background:var(--gradient-mark);margin:0 3px;"></span>
+    <div style="flex:1;height:1px;background:rgba(30,42,58,0.12);"></div>
+  </div>
+
+  <!-- ════════════ 06 · ROLL-OUT & GTM ════════════ -->
+  <section id="ch-6" data-chapter="ch-6" data-screen-label="06 Roll-out and GTM" style="max-width:1120px;margin:0 auto;padding:110px 28px 0;scroll-margin-top:90px;">
+    <div data-reveal style="display:flex;align-items:baseline;gap:22px;">
+      <span style="font-size:110px;font-weight:300;line-height:0.8;color:rgba(30,42,58,0.08);letter-spacing:-0.03em;" aria-hidden="true">06</span>
+      <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.5);">Roll-out &amp; GTM</span>
+    </div>
+    <h2 data-reveal style="margin:30px 0 0;font-size:clamp(30px, 4vw, 42px);line-height:1.12;letter-spacing:-0.02em;font-weight:300;color:#1E2A3A;max-width:680px;text-wrap:pretty;">Your product can change after launch — <em style="font-style:normal;color:#D95A42;">without anyone touching a line of code</em>.</h2>
+    <p data-reveal style="margin:22px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);max-width:640px;">As models get updated and customers bring inputs you never tested on. A rollout is a continuous process of releasing your product, in which <strong style="font-weight:600;color:#1E2A3A;">each stage is unlocked via measured criteria</strong>.</p>
+
+    <!-- phase stepper -->
+    <div data-reveal style="margin-top:50px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:24px;padding:38px 40px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#D95A3F;">1 · Written conditions for roll-out</div>
+      <p style="margin:12px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);max-width:620px;">Each functionality competes for its spot on production. Have in written form what it needs to achieve in each phase to progress to the next one:</p>
+      <div style="margin-top:28px;display:flex;flex-direction:column;gap:0;">
+        <div style="display:flex;gap:22px;">
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <span style="flex-shrink:0;width:34px;height:34px;border-radius:50%;background:#F7F5F1;box-shadow:-2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(30,42,58,0.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#D95A3F;">0</span>
+            <div style="flex:1;width:2px;background:linear-gradient(rgba(242,112,89,0.3), rgba(242,112,89,0.15));margin:6px 0;"></div>
+          </div>
+          <div style="padding-bottom:28px;">
+            <div style="font-size:15px;font-weight:600;color:#1E2A3A;">Shadow mode</div>
+            <p style="margin:6px 0 0;font-size:14px;line-height:1.6;color:rgba(30,42,58,0.6);max-width:56ch;">The AI runs on real production cases next to the current process; no end-user sees its output.</p>
+            <div style="margin-top:10px;display:inline-block;font-size:12px;font-style:italic;color:rgba(30,42,58,0.55);background:#EFECE7;border-radius:999px;box-shadow:inset 2px 2px 6px rgba(30,42,58,0.07), inset -2px -2px 6px rgba(255,255,255,0.9);padding:7px 16px;">Unlocks when the AI matches the current process on 99% of cases.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:22px;">
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <span style="flex-shrink:0;width:34px;height:34px;border-radius:50%;background:#F7F5F1;box-shadow:-2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(30,42,58,0.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#D95A3F;">1</span>
+            <div style="flex:1;width:2px;background:rgba(242,112,89,0.2);margin:6px 0;"></div>
+          </div>
+          <div style="padding-bottom:28px;">
+            <div style="font-size:15px;font-weight:600;color:#1E2A3A;">Friendly customers</div>
+            <p style="margin:6px 0 0;font-size:14px;line-height:1.6;color:rgba(30,42,58,0.6);max-width:56ch;">3–5 existing end users who agree to try a beta and give feedback in a structured manner you set up.</p>
+            <div style="margin-top:10px;display:inline-block;font-size:12px;font-style:italic;color:rgba(30,42,58,0.55);background:#EFECE7;border-radius:999px;box-shadow:inset 2px 2px 6px rgba(30,42,58,0.07), inset -2px -2px 6px rgba(255,255,255,0.9);padding:7px 16px;">Unlocks when users naturally switch over without being asked, and no critical issue is open.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:22px;">
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <span style="flex-shrink:0;width:34px;height:34px;border-radius:50%;background:#F7F5F1;box-shadow:-2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(30,42,58,0.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#D95A3F;">2</span>
+            <div style="flex:1;width:2px;background:rgba(242,112,89,0.2);margin:6px 0;"></div>
+          </div>
+          <div style="padding-bottom:28px;">
+            <div style="font-size:15px;font-weight:600;color:#1E2A3A;">One segment</div>
+            <p style="margin:6px 0 0;font-size:14px;line-height:1.6;color:rgba(30,42,58,0.6);max-width:56ch;">5% of accounts in one group of similar customers — segmented by usage type, pricing tier, geography.</p>
+            <div style="margin-top:10px;display:inline-block;font-size:12px;font-style:italic;color:rgba(30,42,58,0.55);background:#EFECE7;border-radius:999px;box-shadow:inset 2px 2px 6px rgba(30,42,58,0.07), inset -2px -2px 6px rgba(255,255,255,0.9);padding:7px 16px;">Unlocks when task success is at least 5% higher than without your solution, and cost per decision is within budget.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:22px;">
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <span style="flex-shrink:0;width:34px;height:34px;border-radius:50%;background:#F7F5F1;box-shadow:-2px -2px 6px rgba(255,255,255,0.9), 3px 3px 8px rgba(30,42,58,0.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#D95A3F;">3</span>
+            <div style="flex:1;width:2px;background:rgba(242,112,89,0.2);margin:6px 0;"></div>
+          </div>
+          <div style="padding-bottom:28px;">
+            <div style="font-size:15px;font-weight:600;color:#1E2A3A;">All segments</div>
+            <p style="margin:6px 0 0;font-size:14px;line-height:1.6;color:rgba(30,42,58,0.6);max-width:56ch;">25% of accounts across every user group.</p>
+            <div style="margin-top:10px;display:inline-block;font-size:12px;font-style:italic;color:rgba(30,42,58,0.55);background:#EFECE7;border-radius:999px;box-shadow:inset 2px 2px 6px rgba(30,42,58,0.07), inset -2px -2px 6px rgba(255,255,255,0.9);padding:7px 16px;">Unlocks when the same lift holds in each group individually, not only on average.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:22px;">
+          <span style="flex-shrink:0;width:34px;height:34px;border-radius:50%;background:var(--gradient-mark);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;box-shadow:0 8px 30px rgba(242,112,89,0.3);">4</span>
+          <div>
+            <div style="font-size:15px;font-weight:600;color:#1E2A3A;">Everyone</div>
+            <p style="margin:6px 0 0;font-size:14px;line-height:1.6;color:rgba(30,42,58,0.6);max-width:56ch;">All accounts. The old path is switched off and everyone uses the new solution.</p>
+          </div>
+        </div>
+      </div>
+      <p style="margin:28px 0 0;font-size:13px;line-height:1.65;color:rgba(30,42,58,0.5);max-width:620px;">If a solution misses its condition in its dedicated time, stop the progression and iterate — or roll back with a feature flag, depending on severity. Share these conditions with stakeholders before the rollout, so promotions and rollbacks are clear.</p>
+    </div>
+
+    <!-- pacing + mental models -->
+    <div data-reveal style="display:flex;gap:22px;flex-wrap:wrap;margin-top:44px;">
+      <div style="flex:1 1 300px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:28px 32px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+        <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#D95A3F;">2 · Map the mental models waiting in production</div>
+        <p style="margin:12px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">Your product lands on expectations customers already hold. Before launch, list the ones it will meet on day one and plan around them.</p>
+        <p style="margin:12px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.5);">Anthropic reports ~1/3 first-attempt success for its coding agent, so it sets the expectation up front: try one-shot, then switch to collaborating. Notion saw 18,000 agents created in three weeks — 90% running on automated triggers, not chat. Usage data, not the launch plan, showed how the product was adopted.</p>
+      </div>
+      <div style="flex:1 1 300px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:28px 32px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+        <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#D95A3F;">3 · Let the cost of an error set the pace</div>
+        <p style="margin:12px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);"><strong style="font-weight:600;color:#3DB8B0;">Cheap and visible</strong> (a draft the user edits before sending): take bigger steps — 5% → 50% of accounts, about a week per phase.</p>
+        <p style="margin:10px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);"><strong style="font-weight:600;color:#F29E4C;">Costly or hidden</strong>: start in parallel with the existing process, then 1% → 5% → 20%, about a month per phase, with human approval on every action. And compare against the old process's measured error rate — it makes mistakes too.</p>
+      </div>
+    </div>
+
+    <div data-reveal style="display:flex;gap:22px;flex-wrap:wrap;margin-top:22px;">
+      <div style="flex:1 1 300px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:28px 32px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+        <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#D95A3F;">4 · Design adoption, then measure it per segment</div>
+        <p style="margin:12px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">Put the entry point inside the workflow where the work actually happens — not in a separate AI tab. Usage unlocks usage: track actions as kinetic energy which spreads and drives more usage.</p>
+        <p style="margin:12px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.5);">Facebook famously found that a new user adding 7 friends in 10 days hit the "Aha! moment" — beyond it, long-term retention skyrocketed; below it, they almost always churned.</p>
+      </div>
+      <div style="flex:1 1 300px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:28px 32px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+        <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#D95A3F;">5 · Measure the outcome your customer bought</div>
+        <p style="margin:12px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">Logins show the product is open, not that it works. Pick the one number that proves the customer got the result — a resolved ticket, a completed task — and report it next to usage.</p>
+        <p style="margin:12px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.5);">Intercom prices its Fin agent at $0.99 per confirmed resolution — the outcome metric doubles as the invoice.</p>
+      </div>
+    </div>
+
+    <!-- pricing -->
+    <div data-reveal style="margin-top:90px;">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.5);">Pricing</div>
+      <h3 style="margin:16px 0 0;font-size:clamp(26px, 3vw, 34px);line-height:1.15;font-weight:300;letter-spacing:-0.015em;color:#1E2A3A;max-width:620px;">The biggest marginal lever for growth is not acquiring new customers — <em style="font-style:normal;color:#D95A42;">it's pricing</em>.</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:24px;">
+        <div style="flex:1 1 420px;min-width:min(100%, 420px);max-width:640px;">
+          <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);"><strong style="font-weight:600;color:#1E2A3A;">Price is an exchange rate</strong> between the value your customer receives (and perceives) and what they pay for it. Get close to understanding how your end users interpret value. The gap between what customers would pay and what you charge is your revenue left on the table.</p>
+        </div>
+        <aside style="flex:1 1 220px;max-width:270px;background:#FFF5EB;border-radius:16px;padding:18px 20px;transform:rotate(0.5deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="width:14px;height:7px;border-radius:14px 14px 0 0;background:var(--gradient-mark);"></span>
+            <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">ProfitWell</span>
+          </div>
+          <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Patrick Campbell's pricing data shows most companies underprice. "Finger in the air" pricing almost always means you're underselling.</p>
+        </aside>
+      </div>
+
+      <div style="margin-top:40px;">
+        <h4 style="margin:0;font-size:18px;font-weight:600;color:#1E2A3A;">Find your value metric</h4>
+        <p style="margin:8px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);max-width:620px;">The unit you charge for: seats, messages, rows synced, resolved tickets, API calls. A good one:</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
+          <span style="font-size:12px;font-weight:500;color:#1E2A3A;padding:9px 18px;border-radius:999px;background:#EFECE7;box-shadow:inset 2px 2px 6px rgba(30,42,58,0.07), inset -2px -2px 6px rgba(255,255,255,0.9);">is easy to understand — no calculator needed</span>
+          <span style="font-size:12px;font-weight:500;color:#1E2A3A;padding:9px 18px;border-radius:999px;background:#EFECE7;box-shadow:inset 2px 2px 6px rgba(30,42,58,0.07), inset -2px -2px 6px rgba(255,255,255,0.9);">grows as your customer succeeds</span>
+          <span style="font-size:12px;font-weight:500;color:#1E2A3A;padding:9px 18px;border-radius:999px;background:#EFECE7;box-shadow:inset 2px 2px 6px rgba(30,42,58,0.07), inset -2px -2px 6px rgba(255,255,255,0.9);">feels fair to your customers</span>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:34px;">
+        <div style="flex:1 1 210px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:20px;padding:24px 26px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);" style-hover="transform:translateY(-3px);box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 10px 12px 28px rgba(30,42,58,0.13);">
+          <div style="font-size:15px;font-weight:600;color:#1E2A3A;">Feature tiers</div>
+          <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Pay more for advanced features.</p>
+          <div style="margin-top:12px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.4);">Adobe</div>
+        </div>
+        <div style="flex:1 1 210px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:20px;padding:24px 26px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);" style-hover="transform:translateY(-3px);box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 10px 12px 28px rgba(30,42,58,0.13);">
+          <div style="font-size:15px;font-weight:600;color:#1E2A3A;">Light features + value metric</div>
+          <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Few plan differences; price follows usage.</p>
+          <div style="margin-top:12px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.4);">Slack · per user</div>
+        </div>
+        <div style="flex:1 1 210px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:20px;padding:24px 26px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);" style-hover="transform:translateY(-3px);box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 10px 12px 28px rgba(30,42,58,0.13);">
+          <div style="font-size:15px;font-weight:600;color:#1E2A3A;">Hybrid</div>
+          <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Feature tiers plus a value metric.</p>
+          <div style="margin-top:12px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.4);">Salesforce · plans per user</div>
+        </div>
+        <div style="flex:1 1 210px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:20px;padding:24px 26px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);" style-hover="transform:translateY(-3px);box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 10px 12px 28px rgba(30,42,58,0.13);">
+          <div style="font-size:15px;font-weight:600;color:#1E2A3A;">Pure value metric</div>
+          <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">The price follows usage only.</p>
+          <div style="margin-top:12px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.4);">Twilio · per message</div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:44px;">
+        <div style="flex:1 1 420px;min-width:min(100%, 420px);max-width:640px;">
+          <h4 style="margin:0;font-size:18px;font-weight:600;color:#1E2A3A;">Research, don't guess</h4>
+          <p style="margin:8px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">Don't assume what customers value. Simple willingness-to-pay exercises:</p>
+          <details style="margin-top:14px;">
+            <summary style="display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);box-shadow:-4px -4px 10px rgba(255,255,255,0.9), 5px 5px 14px rgba(30,42,58,0.10);cursor:pointer;font-size:13px;font-weight:600;color:#D95A3F;user-select:none;" style-hover="box-shadow:-4px -4px 10px rgba(255,255,255,0.9), 5px 5px 14px rgba(30,42,58,0.10), 0 8px 30px rgba(242,112,89,0.18);" style-active="transform:scale(0.97);">
+              <span data-plus style="display:inline-block;transition:transform 240ms cubic-bezier(0.22,0.61,0.36,1);font-weight:400;font-size:16px;line-height:1;">+</span> learn more: which method when
+            </summary>
+            <div style="margin-top:14px;background:#EFECE7;border-radius:16px;box-shadow:inset 3px 3px 8px rgba(30,42,58,0.07), inset -3px -3px 8px rgba(255,255,255,0.9);padding:22px 26px;">
+              <p style="margin:0;font-size:14px;line-height:1.7;color:rgba(30,42,58,0.66);"><strong style="font-weight:600;color:#1E2A3A;">Van Westendorp</strong> — early on, when you need a broad price range.</p>
+              <p style="margin:10px 0 0;font-size:14px;line-height:1.7;color:rgba(30,42,58,0.66);"><strong style="font-weight:600;color:#1E2A3A;">Gabor-Granger</strong> — once the offer is clear: purchase intent at set price points, to find the price that realistically brings the most revenue.</p>
+              <p style="margin:10px 0 0;font-size:14px;line-height:1.7;color:rgba(30,42,58,0.66);"><strong style="font-weight:600;color:#1E2A3A;">Conjoint analysis</strong> — the most holistic and precise, but also the most complex of the three.</p>
+            </div>
+          </details>
+          <div style="margin-top:28px;">
+            <h4 style="margin:0;font-size:18px;font-weight:600;color:#1E2A3A;">How to know what to price</h4>
+            <p style="margin:8px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">A simple grid shows where each functionality lies — and from that, how to position and price it. Different segments see value differently; use that to maximize consumer surplus. Features only some customers want (a lot) work best as add-ons.</p>
+          </div>
+        </div>
+        <div style="flex:1 1 240px;max-width:320px;display:flex;flex-direction:column;gap:18px;">
+          <image-slot id="pricing-grid" shape="rounded" radius="16" style="width:100%;height:200px;" placeholder="Drop: the pricing positioning grid"></image-slot>
+          <aside style="background:#FFF5EB;border-radius:16px;padding:16px 18px;transform:rotate(-0.5deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="width:14px;height:7px;border-radius:14px 14px 0 0;background:var(--gradient-mark);"></span>
+              <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">The classic add-on</span>
+            </div>
+            <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Priority support: 20–30% of a customer base will pay for it. Price it around 10% of the core product — since you already support your customers, it's almost all pure margin.</p>
+          </aside>
+        </div>
+      </div>
+
+      <div style="margin-top:44px;background:#EFECE7;border-radius:18px;box-shadow:inset 3px 3px 8px rgba(30,42,58,0.07), inset -3px -3px 8px rgba(255,255,255,0.9);padding:24px 28px;max-width:760px;">
+        <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#D95A3F;">Pricing is a continual conversation</div>
+        <p style="margin:8px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">Review pricing every 6 months as the product improves; run pricing experiments every quarter. The logic is simple: <strong style="font-weight:600;color:#1E2A3A;">once you've delivered new value, you can raise the price.</strong> When you re-price, back it with research and protect existing customers (grandfathering), so it reads as value and not as a grab.</p>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:56px;">
+        <div style="flex:1 1 420px;min-width:min(100%, 420px);max-width:640px;">
+          <h4 style="margin:0;font-size:18px;font-weight:600;color:#1E2A3A;">Pricing in times of AI</h4>
+          <p style="margin:10px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);">Outside of classic infra cost, AI products produce inference cost just by being used. The old freemium — unlimited access — has to change: free has to show enough "magic" to hit the aha moment, without being good enough to replace the paid tier. The question on your table: <em>what to gate behind the paywall?</em></p>
+          <p style="margin:14px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.6);">Google AI started with one premium tier built around its smartest model. It didn't work: the free tier already felt "smarter than I am" to most users, so few upgraded — while paying power users burned "terrifying" amounts of compute.</p>
+        </div>
+        <aside style="flex:1 1 240px;max-width:300px;background:#FFF5EB;border-radius:16px;padding:18px 20px;transform:rotate(0.6deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="width:14px;height:7px;border-radius:14px 14px 0 0;background:var(--gradient-mark);"></span>
+            <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">What Google gates instead</span>
+          </div>
+          <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);"><strong style="font-weight:600;color:#1E2A3A;">Usage intensity</strong> — tiers by volume (Midjourney: same quality, you pay for fast GPU hours).</p>
+          <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);"><strong style="font-weight:600;color:#1E2A3A;">Outcomes</strong> — free gives the answer, paid does the work (Chrome auto-browse).</p>
+          <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);"><strong style="font-weight:600;color:#1E2A3A;">The heaviest modalities</strong> — text free; video, 3D and simulation paid.</p>
+        </aside>
+      </div>
+    </div>
+
+    <!-- monetization -->
+    <div data-reveal style="margin-top:90px;">
+      <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.5);">Monetization</div>
+      <h3 style="margin:16px 0 0;font-size:clamp(26px, 3vw, 34px);line-height:1.15;font-weight:300;letter-spacing:-0.015em;color:#1E2A3A;max-width:660px;">You have a new cost line item: the price of every decision your AI makes.</h3>
+      <p style="margin:18px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);max-width:640px;">Each decision is paid in model calls, tokens, retrieval and tool runs — track it per decision, not only per customer. Pricing sets the number; monetization is the mechanics behind it: how the bill is built, how it behaves month to month, and whether each customer still earns you money.</p>
+      <div style="display:flex;gap:22px;flex-wrap:wrap;margin-top:34px;">
+        <div style="flex:1 1 300px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:28px 32px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+          <h4 style="margin:0;font-size:17px;font-weight:600;color:#1E2A3A;">Cost to serve sets the floor</h4>
+          <p style="margin:10px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">Your cost per decision sets the floor of your price — and that floor moves with every model you choose and every new release. On the Databricks calculator, the same workload costs $3,823 a month on GPT-5 and $152 on GPT-5 Nano. Model choice is now a monetization decision.</p>
+        </div>
+        <div style="flex:1 1 300px;background:#F7F5F1;border:1px solid rgba(255,255,255,0.8);border-radius:22px;padding:28px 32px;box-shadow:-6px -6px 16px rgba(255,255,255,0.85), 7px 7px 20px rgba(30,42,58,0.10);">
+          <h4 style="margin:0;font-size:17px;font-weight:600;color:#1E2A3A;">Predictability is a feature</h4>
+          <p style="margin:10px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">When a bill surprises, customers don't just question the price — they stop trusting the product. Bill shock is a product problem, not a billing one. The fix: a committed base agreed upfront, overage priced in advance, and real-time usage visibility so alerts arrive before the spend.</p>
+          <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.5);">Lebara turned bill shock into a feature: a usage alert at 80% and a one-tap top-up, instead of a support ticket.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:34px;">
+        <div style="flex:1 1 420px;min-width:min(100%, 420px);max-width:640px;">
+          <h4 style="margin:0;font-size:17px;font-weight:600;color:#1E2A3A;">AI keeps the bill under control</h4>
+          <p style="margin:10px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.66);">The same AI that adds a cost line helps you manage it: forecast usage per cohort and flag anomalies before the invoice goes out; answer "why did my bill change?" with the actual root cause; replay a planned price change on real customer bills before you ship it.</p>
+          <div style="margin-top:24px;position:relative;overflow:hidden;background:var(--gradient-warm);border-radius:18px;padding:22px 26px;">
+            <div style="position:absolute;inset:0;pointer-events:none;background-image:var(--grain);background-size:128px;"></div>
+            <div style="position:relative;">
+              <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,0.55);">Try this</div>
+              <p style="margin:8px 0 0;font-size:14px;line-height:1.65;color:#fff;">Pick your heaviest and your lightest customer. Compare what each pays, the value each gets, and what each costs you to serve — inference included. If your heaviest user is your least profitable one, your model charges for the wrong thing.</p>
+              <a href="{{ mailto }}" style="display:inline-block;margin-top:14px;font-size:12px;font-weight:600;color:#fff;text-decoration:none;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.35);backdrop-filter:blur(8px);">Let's talk →</a>
+            </div>
+          </div>
+        </div>
+        <aside style="flex:1 1 220px;max-width:270px;background:#FFF5EB;border-radius:16px;padding:18px 20px;transform:rotate(-0.6deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="width:14px;height:7px;border-radius:14px 14px 0 0;background:var(--gradient-mark);"></span>
+            <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">Fivetran</span>
+          </div>
+          <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:rgba(30,42,58,0.6);">Charges per monthly active row. A backfill or schema change could add millions of billable rows overnight; many bills rose 40–70%, some 2–4x — and competitors built their pitch around it.</p>
+        </aside>
+      </div>
+      <p style="margin:34px 0 0;font-size:14px;line-height:1.7;color:rgba(30,42,58,0.55);max-width:620px;">When a monetization model doesn't work, it rarely shows up in a pricing review. It shows up as <strong style="font-weight:600;color:#1E2A3A;">churn</strong> <span style="display:inline-block;margin-left:8px;font-size:11px;font-weight:500;color:rgba(30,42,58,0.45);padding:4px 11px;border-radius:999px;border:1px dashed rgba(30,42,58,0.25);vertical-align:2px;">chapter coming</span></p>
+    </div>
+  </section>
+
+  <div style="max-width:1120px;margin:100px auto 0;padding:0 28px;display:flex;align-items:flex-end;" aria-hidden="true">
+    <div style="flex:1;height:1px;background:rgba(30,42,58,0.12);"></div>
+    <span style="width:18px;height:9px;border-radius:18px 18px 0 0;background:var(--gradient-mark);margin:0 3px;"></span>
+    <div style="flex:1;height:1px;background:rgba(30,42,58,0.12);"></div>
+  </div>
+
+  <!-- ════════════ 07 · SUCCESS ════════════ -->
+  <section id="ch-7" data-chapter="ch-7" data-screen-label="07 What success looks like" style="max-width:1120px;margin:0 auto;padding:110px 28px 0;scroll-margin-top:90px;">
+    <div data-reveal style="display:flex;align-items:baseline;gap:22px;">
+      <span style="font-size:110px;font-weight:300;line-height:0.8;color:rgba(30,42,58,0.08);letter-spacing:-0.03em;" aria-hidden="true">07</span>
+      <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.5);">What success looks like</span>
+    </div>
+    <h2 data-reveal style="margin:30px 0 0;font-size:clamp(30px, 4vw, 42px);line-height:1.12;letter-spacing:-0.02em;font-weight:300;color:#1E2A3A;max-width:660px;text-wrap:pretty;">A question you should be <em style="font-style:normal;color:#D95A42;">the first</em> to propose a response to.</h2>
+    <p data-reveal style="margin:22px 0 0;font-size:15px;line-height:1.7;color:rgba(30,42,58,0.72);max-width:640px;">Then: how do you measure it, with which tools, and who gets the data? That's the Metrics strategy you own. In times of AI it has moved from periodic snapshots to continuous user intelligence — a quarterly survey becomes an always-live loop, with a synthetic audience that compresses concept tests from weeks to days.</p>
+
+    <div data-reveal style="display:flex;gap:22px;flex-wrap:wrap;margin-top:50px;">
+      <div style="flex:1 1 340px;background:#EFECE7;border-radius:22px;box-shadow:inset 3px 3px 10px rgba(30,42,58,0.07), inset -3px -3px 10px rgba(255,255,255,0.9);padding:28px 32px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#F27059;"></span>
+          <h4 style="margin:0;font-size:16px;font-weight:600;color:#1E2A3A;">Quality &amp; Trust</h4>
+        </div>
+        <ul style="margin:14px 0 0;padding-left:18px;font-size:13px;line-height:2;color:rgba(30,42,58,0.62);">
+          <li>Eval coverage — % of real production scenarios in your golden set</li>
+          <li>Eval pass rate as a merge / release gate</li>
+          <li>Hallucination ratio</li>
+          <li>Regeneration rate — how often a user hits "retry"</li>
+          <li>Guardrail trigger / policy-violation hit rate</li>
+          <li>Trace coverage — % of decisions with an auditable log</li>
+          <li>Re-engagement after error rate</li>
+        </ul>
+      </div>
+      <div style="flex:1 1 340px;background:#EFECE7;border-radius:22px;box-shadow:inset 3px 3px 10px rgba(30,42,58,0.07), inset -3px -3px 10px rgba(255,255,255,0.9);padding:28px 32px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#F29E4C;"></span>
+          <h4 style="margin:0;font-size:16px;font-weight:600;color:#1E2A3A;">Autonomy &amp; Reliability</h4>
+        </div>
+        <ul style="margin:14px 0 0;padding-left:18px;font-size:13px;line-height:2;color:rgba(30,42,58,0.62);">
+          <li>Autonomy rate based on task complexity</li>
+          <li>Types of tasks automated (by complexity)</li>
+          <li>Ratio of AI decisions overridden by a human</li>
+          <li>Model drift frequency</li>
+        </ul>
+      </div>
+      <div style="flex:1 1 340px;background:#EFECE7;border-radius:22px;box-shadow:inset 3px 3px 10px rgba(30,42,58,0.07), inset -3px -3px 10px rgba(255,255,255,0.9);padding:28px 32px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#3DB8B0;"></span>
+          <h4 style="margin:0;font-size:16px;font-weight:600;color:#1E2A3A;">Value &amp; Adoption</h4>
+        </div>
+        <ul style="margin:14px 0 0;padding-left:18px;font-size:13px;line-height:2;color:rgba(30,42,58,0.62);">
+          <li>Depth of use and organic (unprompted) adoption</li>
+          <li>Goal completion rate</li>
+          <li>Time-to-data / time-to-value</li>
+          <li>Flywheel coverage — quality outputs fed back to the system</li>
+          <li>Synthetic-audience accumulation rate</li>
+        </ul>
+      </div>
+      <div style="flex:1 1 340px;background:#EFECE7;border-radius:22px;box-shadow:inset 3px 3px 10px rgba(30,42,58,0.07), inset -3px -3px 10px rgba(255,255,255,0.9);padding:28px 32px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#9B8FD4;"></span>
+          <h4 style="margin:0;font-size:16px;font-weight:600;color:#1E2A3A;">Unit Economics</h4>
+        </div>
+        <ul style="margin:14px 0 0;padding-left:18px;font-size:13px;line-height:2;color:rgba(30,42,58,0.62);">
+          <li>Inference cost-per-decision, weighed against the value each call creates</li>
+          <li>Cache hit rate</li>
+        </ul>
+      </div>
+    </div>
+
+    <div data-reveal style="margin-top:56px;background:#FFF5EB;border-radius:18px;padding:24px 28px;max-width:720px;transform:rotate(-0.3deg);box-shadow:0 2px 10px rgba(30,42,58,0.06);">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="width:14px;height:7px;border-radius:14px 14px 0 0;background:var(--gradient-mark);"></span>
+        <span style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(30,42,58,0.45);">Quick task</span>
+      </div>
+      <p style="margin:10px 0 0;font-size:14px;line-height:1.65;color:rgba(30,42,58,0.65);">Analyse which critical value areas aren't currently tracked in your solution, and write a short Analytics strategy to discuss with your team. Talk about the business decisions it would unlock. <a href="{{ mailto }}">Let me know!</a></p>
+    </div>
+  </section>
+
+  <!-- ———— closing ———— -->
+  <footer data-screen-label="Closing" style="max-width:1120px;margin:110px auto 0;padding:0 28px 60px;">
+    <div data-reveal>
+      <x-import component-from-global-scope="HoursDesignSystem_a6c7f7.Band" message="Build solutions people love." name="Product Course" url="{{ email }}" hint-size="100%,110px"></x-import>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:28px;">
+      <p style="margin:0;font-size:12px;color:rgba(30,42,58,0.4);">A single-scroll course on Product Management, in times of AI.</p>
+      <a href="{{ mailto }}" style="font-size:12px;font-weight:600;">{{ email }}</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;contactEmail&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;dusan.kolenovic@hireright.com&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Course&quot; },
+  &quot;showSun&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Chrome&quot;, &quot;description&quot;: &quot;Rising-sun scroll progress under the header&quot; },
+  &quot;showNav&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Chrome&quot;, &quot;description&quot;: &quot;Chapter navigation in the sticky header&quot; }
+}">
+class Component extends DCLogic {
+  state = { progress: 0, active: 'ch-1' };
+  componentDidMount() {
+    this._raf = null;
+    this._onScroll = () => {
+      if (this._raf) return;
+      this._raf = requestAnimationFrame(() => {
+        this._raf = null;
+        const d = document.documentElement;
+        const max = d.scrollHeight - window.innerHeight;
+        const p = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+        if (Math.abs(p - this.state.progress) > 0.15) this.setState({ progress: p });
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('resize', this._onScroll, { passive: true });
+    this._onScroll();
+    this._io = new IntersectionObserver((es) => {
+      es.forEach((e) => { if (e.isIntersecting) this.setState({ active: e.target.id }); });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    this._obsTimer = setInterval(() => {
+      const els = document.querySelectorAll('[data-chapter]');
+      if (els.length >= 7) {
+        els.forEach((el) => this._io.observe(el));
+        clearInterval(this._obsTimer);
+        this._obsTimer = null;
+      }
+    }, 700);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onScroll);
+    if (this._io) this._io.disconnect();
+    if (this._obsTimer) clearInterval(this._obsTimer);
+  }
+  renderVals() {
+    const email = this.props.contactEmail ?? 'dusan.kolenovic@hireright.com';
+    const p = this.state.progress;
+    const labels = [
+      ['ch-1', 'Welcome'], ['ch-2', 'New forms'], ['ch-3', 'New nature'],
+      ['ch-4', 'Human edge'], ['ch-5', 'What to build'], ['ch-6', 'Roll-out & GTM'], ['ch-7', 'Success'],
+    ];
+    const nav = labels.map(([id, label]) => {
+      const on = this.state.active === id;
+      return { id, label, href: '#' + id, style: {
+        fontSize: '12px', fontWeight: on ? 600 : 500,
+        color: on ? '#D95A3F' : 'rgba(30,42,58,0.5)', textDecoration: 'none',
+        letterSpacing: '0.02em', padding: '6px 11px', borderRadius: '999px',
+        background: on ? 'rgba(242,112,89,0.10)' : 'transparent',
+        boxShadow: on ? 'inset 1px 1px 4px rgba(30,42,58,0.06), inset -1px -1px 4px rgba(255,255,255,0.8)' : 'none',
+        transition: 'all 240ms cubic-bezier(0.22,0.61,0.36,1)', whiteSpace: 'nowrap',
+      } };
+    });
+    return {
+      email, mailto: 'mailto:' + email, nav,
+      fillWidth: p.toFixed(1) + '%',
+      sunLeft: 'calc(' + p.toFixed(1) + '% - 7px)',
+      showSun: this.props.showSun ?? true,
+      showNav: this.props.showNav ?? true,
+      quoteA: { size: 34, minHeight: 230 },
+      quoteB: { size: 28, minHeight: 210, quotes: false },
+    };
+  }
+}
+</script>
+</body>
+</html>

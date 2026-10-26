@@ -1,0 +1,39 @@
+/* ===========================================================
+   Hours — Radii, shadows, surface effects
+   Soft, rounded, never sharp. Shadows are diffuse and warm-
+   tinted (navy, low opacity) — like late-afternoon light.
+   The grain texture is the brand's signature surface treatment.
+   =========================================================== */
+:root {
+  /* ---- Corner radii ---- */
+  --radius-sm:   8px;
+  --radius-md:   14px;   /* cards, swatches, inputs */
+  --radius-lg:   18px;   /* glass cards */
+  --radius-xl:   20px;   /* panels */
+  --radius-2xl:  28px;
+  --radius-pill: 999px;  /* buttons, tags */
+
+  /* ---- Shadows (diffuse, warm navy tint) ---- */
+  --shadow-xs:    0 1px 3px rgba(30, 42, 58, 0.06);
+  --shadow-sm:    0 2px 10px rgba(30, 42, 58, 0.06);
+  --shadow-md:    0 4px 40px rgba(30, 42, 58, 0.13), 0 1px 4px rgba(30, 42, 58, 0.07); /* panel default */
+  --shadow-lg:    0 12px 36px rgba(30, 42, 58, 0.10);
+  --shadow-xl:    0 20px 60px rgba(0, 0, 0, 0.3);  /* floating mockups on dark */
+  --shadow-glow:  0 8px 30px rgba(242, 112, 89, 0.22); /* coral focus glow */
+  --shadow-dark:  0 4px 24px rgba(0, 0, 0, 0.2); /* dark panels */
+
+  /* ---- Glass surface (v5: more transparent, higher blur) ---- */
+  --glass-fill:   rgba(255, 255, 255, 0.22);
+  --glass-border: rgba(255, 255, 255, 0.35);
+  --glass-blur:   24px;
+
+  /* ---- Motion: calm, unhurried, never bouncy ---- */
+  --ease-calm:  cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */ /* gentle ease-out */
+  --ease-soft:  cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --dur-fast:   140ms; /* @kind other */
+  --dur-base:   240ms; /* @kind other */
+  --dur-slow:   420ms; /* @kind other */
+
+  /* ---- Signature grain texture (subtle film over surfaces, 4% opacity) ---- */
+  --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); /* @kind other */
+}

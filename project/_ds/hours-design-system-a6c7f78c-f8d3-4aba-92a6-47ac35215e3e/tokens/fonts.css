@@ -1,0 +1,85 @@
+/* ===========================================================
+   Hours — Webfonts
+   Figtree, self-hosted. Variable fonts cover the full weight
+   range; static cuts are declared as fallbacks.
+   =========================================================== */
+
+/* ---- Variable (preferred) ---- */
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-Italic-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ---- Static cuts (fallback) ---- */
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-Light.ttf') format('truetype');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-Regular.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-Medium.ttf') format('truetype');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-SemiBold.ttf') format('truetype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-Bold.ttf') format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-ExtraBold.ttf') format('truetype');
+  font-weight: 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-Black.ttf') format('truetype');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+
+/* Italic static cuts */
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-LightItalic.ttf') format('truetype');
+  font-weight: 300; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-Italic.ttf') format('truetype');
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-MediumItalic.ttf') format('truetype');
+  font-weight: 500; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree-BoldItalic.ttf') format('truetype');
+  font-weight: 700; font-style: italic; font-display: swap;
+}

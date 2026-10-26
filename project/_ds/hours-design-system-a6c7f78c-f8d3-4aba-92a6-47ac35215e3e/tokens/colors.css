@@ -1,0 +1,88 @@
+/* ===========================================================
+   Hours — Color tokens
+   A warm, calm spectrum: sunrise corals & peaches, grounded
+   navy, restful cream canvases, with cool teal/sky/lavender
+   as supporting voices. Warm dominates; cool supports.
+   =========================================================== */
+:root {
+  /* ---- Brand palette (base) ---- */
+  --coral:          #F27059;  /* primary — the sunrise */
+  --coral-light:    #FF8A75;
+  --coral-deep:     #D95A3F;  /* hover / pressed */
+  --peach:          #FFB088;
+  --peach-soft:     #FFDCC8;
+  --amber:          #F29E4C;
+
+  --teal:           #3DB8B0;
+  --sky:            #6BA3E8;
+  --lavender:       #9B8FD4;
+  --lavender-light: #B8AEE6;
+
+  /* ---- Brand essence accent spans (solid colors, not gradient-clip) ---- */
+  --essence-red:    #D95A42;  /* "never" */
+  --essence-pink:   #C05882;  /* "the other way" */
+  --essence-violet: #8B7FC7;  /* "around." */
+
+  /* ---- Neutrals (warm-leaning) ---- */
+  --navy:           #1E2A3A;  /* primary ink */
+  --navy-soft:      #2A3548;  /* dark panels */
+  --navy-deep:      #0D1018;  /* deepest dark */
+  --cream:          #FFF5EB;  /* warm surface */
+  --cream-warm:     #FFF9F3;  /* lightest surface */
+  --canvas:         #DDD8CF;  /* warm grey canvas */
+  --surface-light:  #F5F3F0;  /* v2: airy near-white body */
+  --white:          #FFFFFF;  /* pure white cards on light */
+
+  /* ---- Ink scale (navy at decreasing opacity, for text on light) ---- */
+  --ink-900: rgba(30, 42, 58, 1);
+  --ink-700: rgba(30, 42, 58, 0.72);
+  --ink-500: rgba(30, 42, 58, 0.5);
+  --ink-400: rgba(30, 42, 58, 0.35);
+  --ink-300: rgba(30, 42, 58, 0.2);
+  --ink-200: rgba(30, 42, 58, 0.1);
+  --ink-100: rgba(30, 42, 58, 0.06);
+
+  /* ---- Light scale (white at decreasing opacity, for text on dark) ---- */
+  --light-900: rgba(255, 255, 255, 1);
+  --light-700: rgba(255, 255, 255, 0.72);
+  --light-500: rgba(255, 255, 255, 0.5);
+  --light-400: rgba(255, 255, 255, 0.35);
+  --light-300: rgba(255, 255, 255, 0.2);
+  --light-200: rgba(255, 255, 255, 0.1);
+  --light-100: rgba(255, 255, 255, 0.06);
+
+  /* ============================================================
+     Semantic aliases — reach for these in product code
+     ============================================================ */
+  --color-primary:        var(--coral);
+  --color-primary-hover:  var(--coral-deep);
+  --color-primary-soft:   var(--peach-soft);
+  --color-accent:         var(--lavender);
+  --color-positive:       var(--teal);
+  --color-info:           var(--sky);
+
+  --text-strong:    var(--ink-900);
+  --text-body:      var(--ink-700);
+  --text-muted:     var(--ink-500);
+  --text-faint:     var(--ink-400);
+  --text-on-dark:   var(--light-900);
+  --text-on-accent: var(--cream-warm);
+
+  --surface-page:   var(--surface-light);
+  --surface-card:   var(--white);
+  --surface-cream:  var(--cream);
+  --surface-dark:   var(--navy-soft);
+  --surface-inverse: var(--navy);
+
+  --border-hairline: var(--ink-200);
+  --border-soft:     var(--ink-100);
+  --border-on-dark:  var(--light-200);
+
+  /* ---- Signature gradients ---- */
+  --gradient-sunrise: linear-gradient(135deg, var(--coral) 0%, var(--peach) 52%, var(--lavender-light) 100%);
+  --gradient-warm:    linear-gradient(155deg, var(--peach-soft) 0%, var(--peach) 22%, var(--coral) 48%, #C85C8E 72%, var(--lavender) 100%);
+  --gradient-dawn:    linear-gradient(180deg, var(--navy-deep) 0%, #1A2133 20%, #2D2444 40%, #4A2E4E 55%, #7A3D54 68%, var(--coral) 82%, var(--peach) 93%, #FFF3E8 100%);
+  --gradient-strip:   linear-gradient(90deg, var(--peach-soft) 0%, var(--peach) 20%, var(--coral-light) 45%, var(--coral) 65%, var(--lavender) 100%);
+  --gradient-mark:    linear-gradient(135deg, var(--coral) 0%, #C85C8E 55%, var(--lavender) 100%);
+  --gradient-glass:   linear-gradient(148deg, #FFB088 0%, #F27059 38%, #C85C8E 68%, #9B8FD4 100%); /* @kind color */
+}
