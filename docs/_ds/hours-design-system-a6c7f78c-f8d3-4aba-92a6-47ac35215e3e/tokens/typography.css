@@ -1,0 +1,47 @@
+/* ===========================================================
+   Hours — Typography tokens
+   One family, Figtree. Light weights carry the calm, unhurried
+   headline voice; regular carries body. Generous line height,
+   gentle negative tracking on large display sizes.
+   =========================================================== */
+:root {
+  --font-sans: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: var(--font-sans);
+  --font-body: var(--font-sans);
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ---- Weights ---- */
+  --weight-light:      300;  /* headlines — the signature voice */
+  --weight-regular:    400;  /* body */
+  --weight-medium:     500;  /* labels, UI */
+  --weight-semibold:   600;  /* emphasis, buttons */
+  --weight-bold:       700;
+  --weight-extrabold:  800;
+  --weight-black:      900;
+
+  /* ---- Type scale (px) ---- */
+  --text-display-xl: 64px;   /* hero, light */
+  --text-display:    48px;   /* page titles, light */
+  --text-h1:         36px;
+  --text-h2:         28px;
+  --text-h3:         22px;
+  --text-h4:         18px;
+  --text-body-lg:    17px;
+  --text-base:       15px;
+  --text-sm:         13px;
+  --text-xs:         11px;
+  --text-micro:      10px;   /* uppercase eyebrow labels */
+
+  /* ---- Line heights ---- */
+  --leading-tight:   1.05;   /* display */
+  --leading-snug:    1.25;
+  --leading-normal:  1.5;    /* body */
+  --leading-relaxed: 1.7;
+
+  /* ---- Letter spacing ---- */
+  --tracking-display: -0.02em;  /* tighten large light type */
+  --tracking-tight:   -0.01em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.06em;   /* wordmark, calm spacing */
+  --tracking-eyebrow: 0.12em;   /* uppercase micro labels */
+}
